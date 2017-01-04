@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:typeface="sans"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+
+    tools:context=".Clases.Bus2"
+    android:background="@drawable/app">
+
+    <LinearLayout
+
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent">
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location\n"
+                android:id="@+id/tvPlanta"
+                android:fontFamily="sans-serif"
+                android:textSize="16sp"/>
+
+            <Spinner
+                android:layout_gravity="center"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:id="@+id/spPlanta"
+                android:background="@color/dim_foreground_disabled_material_dark" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:background="@android:color/white"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Year\n"
+                    android:id="@+id/tvAño"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:layout_width="60dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/spAño"
+                    android:background="@color/dim_foreground_disabled_material_dark" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:background="@android:color/white"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                android:text="Month\n"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvMonth"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:layout_width="60dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/spMonth"
+                    android:background="@color/dim_foreground_disabled_material_dark"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@android:color/white"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="From\nWeek"
+                    android:id="@+id/tvSemanaDesde"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:layout_width="60dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/spSemanaDesde"
+                    android:background="@color/dim_foreground_disabled_material_dark" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="To\nWeek"
+                    android:id="@+id/tvSemanaHasta"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:layout_width="60dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/spSemanaHasta"
+                    android:background="@color/dim_foreground_disabled_material_dark" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Back"
+                android:background="#8b4513"
+                android:textColor="@android:color/white"
+                android:id="@+id/btnRegresar" />
+
+            <Button
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Search"
+                android:background="#8b4513"
+                android:textColor="@android:color/white"
+                android:id="@+id/btnAvanzar" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,47 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.luissam.hideutmovil.Fragments.Uno">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:drawableLeft="@drawable/industry"
+            android:textColorHighlight="@android:color/holo_red_light"
+            android:textColor="@android:color/holo_blue_dark"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="   Location"
+            android:id="@+id/BTN1" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_marginTop="30dp"
+            android:drawableLeft="@drawable/filtro"
+            android:textColorHighlight="@android:color/holo_red_light"
+            android:textColor="@android:color/holo_blue_dark"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="  Filter"
+            android:id="@+id/BTN2" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_marginTop="30dp"
+            android:drawableLeft="@drawable/ic_menu_slideshow"
+            android:textColorHighlight="@android:color/holo_red_light"
+            android:textColor="@android:color/holo_blue_dark"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="  Lote"
+            android:id="@+id/BTN3" />
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.luissam.hideutmovil.Clases.Bus3"
+    android:background="@drawable/app">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_gravity="bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_marginTop="19dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location"
+                android:id="@+id/txvPlanta"
+                android:background="@android:color/transparent"/>
+
+            <Spinner
+                android:background="@color/dim_foreground_disabled_material_dark"
+                android:layout_marginLeft="50dp"
+                android:layout_width="160dp"
+                android:layout_height="25dp"
+                android:id="@+id/spPlanta1"
+                android:focusable="true" />
+
+        <!-- Location -->
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Oem"
+                android:id="@+id/tvOem"
+                android:background="@android:color/white"/>
+
+            <Spinner
+                android:background="@color/dim_foreground_disabled_material_dark"
+                android:layout_marginLeft="75dp"
+                android:layout_width="160dp"
+                android:layout_height="25dp"
+                android:id="@+id/spArmadora"
+                android:hint="Selecciona una armadora" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:background="@android:color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Construction"
+                android:id="@+id/tvConstruction" />
+
+            <Spinner
+                android:background="@color/dim_foreground_disabled_material_dark"
+                android:layout_marginLeft="28dp"
+                android:layout_width="160dp"
+                android:layout_height="25dp"
+                android:id="@+id/spConstruccion"/>
+
+            <CheckBox
+                android:background="@android:color/white"
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All"
+                android:id="@+id/chbAll1"
+                android:checked="true"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Program"
+                android:id="@+id/tvProg"
+                android:background="@android:color/white"/>
+
+            <Spinner
+                android:background="@color/dim_foreground_disabled_material_dark"
+                android:layout_marginLeft="50dp"
+                android:layout_width="160dp"
+                android:layout_height="25dp"
+                android:id="@+id/spPrograma" />
+
+            <CheckBox
+                android:background="@android:color/white"
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All"
+                android:id="@+id/chbAll2"
+                android:checked="true"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:background="@android:color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PT"
+                android:id="@+id/txvpt" />
+
+            <Spinner
+                android:background="@color/dim_foreground_disabled_material_dark"
+                android:layout_marginLeft="85dp"
+                android:layout_width="160dp"
+                android:layout_height="25dp"
+                android:id="@+id/spPT" />
+
+            <CheckBox
+                android:background="@android:color/white"
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All"
+                android:id="@+id/chbAll3"
+                android:checked="true"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:background="@android:color/white"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Year\n"
+                    android:id="@+id/tvAño" />
+
+                <Spinner
+                    android:layout_width="60dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/spYear"
+                    android:background="@color/dim_foreground_disabled_material_dark" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@android:color/white"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Month\n"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvMes" />
+
+                <Spinner
+                    android:layout_width="60dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/spMonthBus2"
+                    android:background="@color/dim_foreground_disabled_material_dark" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="From\nWeek"
+                    android:id="@+id/tvSemanaDesde" />
+
+                <Spinner
+                    android:layout_width="60dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/spSemanaDesde2"
+                    android:background="@color/dim_foreground_disabled_material_dark" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@android:color/white"
+                android:layout_marginLeft="15dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="To\nWeek"
+                    android:id="@+id/tvSemanaHasta2" />
+
+                <Spinner
+                    android:layout_width="60dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/spSemanaHasta2"
+                    android:background="@color/dim_foreground_disabled_material_dark" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@android:color/white"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Back"
+                android:id="@+id/btnRegresar2"
+                android:textColor="@android:color/white"
+                android:background="#8b4513"/>
+
+            <Button
+                android:layout_marginLeft="10dp"
+                android:id="@+id/btnBuscar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Search"
+                android:textColor="@android:color/white"
+                android:background="#8b4513"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

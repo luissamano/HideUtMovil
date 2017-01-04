@@ -1,0 +1,58 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.luissam.hideutmovil.Fragments.ConfiFragment">
+
+
+    <LinearLayout
+    android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:background="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selecciona la planta que se mostrara por defecto"
+            android:id="@+id/textView4"
+            android:editable="false"
+            android:focusableInTouchMode="false"
+            android:autoText="false"
+            android:fontFamily="@string/pref_title_social_recommendations"
+            android:layout_weight="1.10"
+            android:textSize="20dp"
+            android:textIsSelectable="true" />
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:layout_marginTop="30dp"
+            android:background="@android:color/white"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/view"
+            android:defaultValue="true"
+            android:hint="Leon"/>
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:layout_gravity="center_horizontal"
+            android:background="@android:color/white"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/view2"
+            android:hint="Nvo Laredo"/>
+
+        <android.support.v7.widget.AppCompatRadioButton
+            android:layout_gravity="center_horizontal"
+            android:background="@android:color/white"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/view3"
+            android:hint="Saltillo"/>
+
+    </LinearLayout>
+</FrameLayout>
