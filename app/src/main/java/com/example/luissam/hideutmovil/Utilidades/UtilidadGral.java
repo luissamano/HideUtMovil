@@ -7,7 +7,9 @@ import android.util.Log;
 
 import com.example.luissam.hideutmovil.Conexion.CONN;
 import com.example.luissam.hideutmovil.FuncionesParaFechas.CalcularMes;
+import com.example.luissam.hideutmovil.FuncionesParaFechas.CalcularMesDB;
 import com.example.luissam.hideutmovil.FuncionesParaFechas.CalcularSemana;
+import com.example.luissam.hideutmovil.FuncionesParaFechas.CalcularSemanaDB;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -18,6 +20,8 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
+
+import static android.media.CamcorderProfile.get;
 
 /**
  * Created by luissam on 10/11/2016.
@@ -100,13 +104,13 @@ public class UtilidadGral {
 
 
 
-        CalculaYTD("SELECT SUM(cueros) Cueros, SUM(ft2) AS FootageUsed, SUM(netft2) AS NetFootage, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) AS HUtilizationVar FROM ( SELECT semana, Oem, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2, CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero,CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto,CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $],SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU,CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage],CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var],CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Fecha BETWEEN '2016-01-03' AND '"+YEAR+"-"+MES+"-"+DIAMES+"' GROUP BY Semana, Oem, Programa, BHTCuero, BHCosto, BHU ) AS p ORDER BY 1");
+        CalculaYTD("SELECT SUM(cueros) Cueros, SUM(ft2) AS FootageUsed, SUM(netft2) AS NetFootage, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) AS HUtilizationVar FROM ( SELECT semana, Oem, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2, CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero,CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto,CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $],SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU,CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage],CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var],CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Fecha BETWEEN '"+YEAR+"-01-02' AND '"+YEAR+"-"+MES+"-"+DIAMES+"' GROUP BY Semana, Oem, Programa, BHTCuero, BHCosto, BHU ) AS p ORDER BY 1");
         MTD("SELECT SUM(cueros) Cueros, SUM(ft2) AS FootageUsed, SUM(netft2) AS NetFootage, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) AS HUtilizationVar FROM ( SELECT semana, Oem, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2, CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero,CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto,CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $],SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU,CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage],CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var],CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Fecha BETWEEN '"+MesIni+"' AND '"+MesFin+"' GROUP BY Semana, Oem, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
         WTD("SELECT SUM(cueros) Cueros, SUM(ft2) AS FootageUsed, SUM(netft2) AS NetFootage, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) AS HUtilizationVar FROM ( SELECT semana, Oem, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2, CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero,CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto,CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $],SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU,CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage],CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var],CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Fecha BETWEEN '"+SemanaIni+"' AND '"+SemanaFin+"' GROUP BY Semana, Oem, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
         TODAY("SELECT SUM(cueros) Cueros, SUM(ft2) AS FootageUsed, SUM(netft2) AS NetFootage, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) AS HUtilizationVar FROM ( SELECT semana, Oem, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2, CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero,CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto,CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $],SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU,CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage],CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var],CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Fecha = '"+YEAR+"-"+MES+"-"+DIAMES+"' GROUP BY Semana, Oem, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
 
-        MesRangoIngresado("SELECT SUM(cueros) Cueros, SUM(ft2) AS FootageUsed, SUM(netft2) AS NetFootage, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) AS HUtilizationVar FROM ( SELECT semana, Oem, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2, CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero,CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto,CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $],SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU,CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage],CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var],CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Fecha BETWEEN '"+MesSelIni+"' AND '"+MesSelFin+"' GROUP BY Semana, Oem, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
-        SemRangoIngresado("SELECT SUM(cueros) Cueros, SUM(ft2) AS FootageUsed, SUM(netft2) AS NetFootage, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) AS HUtilizationVar FROM ( SELECT semana, Oem, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2, CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero,CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto,CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $],SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU,CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage],CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var],CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Fecha BETWEEN '"+SemanaRanIni+"' AND '"+SemanaRanFin+"' GROUP BY Semana, Oem, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
+        MesRangoIngresado("SELECT SUM(cueros) Cueros, SUM(ft2) AS FootageUsed, SUM(netft2) AS NetFootage, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) AS HUtilizationVar FROM ( SELECT semana, Oem, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2, CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero,CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto,CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $],SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU,CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage],CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var],CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Año = '"+Año+"' AND Fecha BETWEEN '"+MesSelIni+"' AND '"+MesSelFin+"' GROUP BY Semana, Oem, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
+        SemRangoIngresado("SELECT SUM(cueros) Cueros, SUM(ft2) AS FootageUsed, SUM(netft2) AS NetFootage, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) AS HUtilizationVar FROM ( SELECT semana, Oem, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2, CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero,CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto,CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $],SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU,CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage],CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var],CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Año = '"+Año+"' AND Fecha BETWEEN '"+SemanaRanIni+"' AND '"+SemanaRanFin+"' GROUP BY Semana, Oem, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
 
     }
 
@@ -118,120 +122,57 @@ public class UtilidadGral {
         MES = calendarNow.get(Calendar.MONTH) + 1;
         DIAMES = calendarNow.get(Calendar.DAY_OF_MONTH);
 
-        CalcularMes ObjMes = new CalcularMes();
 
-        //Mes Actual 
-        
-        if (Integer.parseInt(MesSel) == 1) {
-            MesSelIni = ObjMes.getEneroIni();
-            MesSelFin = ObjMes.getEneroFin();
-        }
-        else if (Integer.parseInt(MesSel) == 2){
-            MesSelIni = ObjMes.getFebreroIni();
-            MesSelFin = ObjMes.getFebreroFin();
-        }
-        else if (Integer.parseInt(MesSel) == 3){
-            MesSelIni = ObjMes.getMarzoIni();
-            MesSelFin = ObjMes.getMArzoFin();
-        }
-        else if (Integer.parseInt(MesSel) == 4){
-            MesSelIni = ObjMes.getAbrilIni();
-            MesSelFin = ObjMes.getAbrilFin();
-        }
-        else if (Integer.parseInt(MesSel) == 5){
-            MesSelIni = ObjMes.getMayoIni();
-            MesSelFin = ObjMes.getMayoFin();
-        }
-        else if (Integer.parseInt(MesSel) == 6){
-            MesSelIni = ObjMes.getJunioIni();
-            MesSelFin = ObjMes.getJunioFin();
-        }
-        else if (Integer.parseInt(MesSel) == 7){
-            MesSelIni = ObjMes.getJulioIni();
-            MesSelFin = ObjMes.getJulioFin();
-        }
-        else if (Integer.parseInt(MesSel) == 8){
-            MesSelIni = ObjMes.getAgostoIni();
-            MesSelFin = ObjMes.getAgostoFin();
-        }
-        else if (Integer.parseInt(MesSel) == 9){
-            MesSelIni = ObjMes.getSeptiembreIni();
-            MesSelFin = ObjMes.getSeptiembreFin();
-        }
-        else if (Integer.parseInt(MesSel) == 10){
-            MesSelIni = ObjMes.getOctubreIni();
-            MesSelFin = ObjMes.getOctubreFin();
-        }
-        else if (Integer.parseInt(MesSel) == 11){
-            MesSelIni = ObjMes.getNoviembreIni();
-            MesSelFin = ObjMes.getNoviembreFin();
-        }
-        else if (Integer.parseInt(MesSel) == 12){
-            MesSelIni = ObjMes.getDiciembreIni();
-            MesSelFin = ObjMes.getDiciembreFin();
-        }
-
-        //Mes seleccionado
-
-        if (MES == 1) {
-            MesIni = ObjMes.getEneroIni();
-            MesFin = ObjMes.getEneroFin();
-        }
-        else if (MES == 2){
-            MesIni = ObjMes.getFebreroIni();
-            MesFin = ObjMes.getFebreroFin();
-        }
-        else if (MES == 3){
-            MesIni = ObjMes.getMarzoIni();
-            MesFin = ObjMes.getMArzoFin();
-        }
-        else if (MES == 4){
-            MesIni = ObjMes.getAbrilIni();
-            MesFin = ObjMes.getAbrilFin();
-        }
-        else if (MES == 5){
-            MesIni = ObjMes.getMayoIni();
-            MesFin = ObjMes.getMayoFin();
-        }
-        else if (MES == 6){
-            MesIni = ObjMes.getJunioIni();
-            MesFin = ObjMes.getJunioFin();
-        }
-        else if (MES == 7){
-            MesIni = ObjMes.getJulioIni();
-            MesFin = ObjMes.getJulioFin();
-        }
-        else if (MES == 8){
-            MesIni = ObjMes.getAgostoIni();
-            MesFin = ObjMes.getAgostoFin();
-        }
-        else if (MES == 9){
-            MesIni = ObjMes.getSeptiembreIni();
-            MesFin = ObjMes.getSeptiembreFin();
-        }
-        else if (MES == 10){
-            MesIni = ObjMes.getOctubreIni();
-            MesFin = ObjMes.getOctubreFin();
-        }
-        else if (MES == 11){
-            MesIni = ObjMes.getNoviembreIni();
-            MesFin = ObjMes.getNoviembreFin();
-        }
-        else if (MES == 12){
-            MesIni = ObjMes.getDiciembreIni();
-            MesFin = ObjMes.getDiciembreFin();
-        }
+        //Mes Actual
 
 
 
+            CalcularMesDB ObjMes = new CalcularMesDB();
 
-        CalcularSemana ObjSema = new CalcularSemana();
+            if (MES == 1) {
+                MesIni = ObjMes.getEneroIni();
+                MesFin = ObjMes.getEneroFin();
+            } else if (MES == 2) {
+                MesIni = ObjMes.getFebreroIni();
+                MesFin = ObjMes.getFebreroFin();
+            } else if (MES == 3) {
+                MesIni = ObjMes.getMarzoIni();
+                MesFin = ObjMes.getMArzoFin();
+            } else if (MES == 4) {
+                MesIni = ObjMes.getAbrilIni();
+                MesFin = ObjMes.getAbrilFin();
+            } else if (MES == 5) {
+                MesIni = ObjMes.getMayoIni();
+                MesFin = ObjMes.getMayoFin();
+            } else if (MES == 6) {
+                MesIni = ObjMes.getJunioIni();
+                MesFin = ObjMes.getJunioFin();
+            } else if (MES == 7) {
+                MesIni = ObjMes.getJulioIni();
+                MesFin = ObjMes.getJulioFin();
+            } else if (MES == 8) {
+                MesIni = ObjMes.getAgostoIni();
+                MesFin = ObjMes.getAgostoFin();
+            } else if (MES == 9) {
+                MesIni = ObjMes.getSeptiembreIni();
+                MesFin = ObjMes.getSeptiembreFin();
+            } else if (MES == 10) {
+                MesIni = ObjMes.getOctubreIni();
+                MesFin = ObjMes.getOctubreFin();
+            } else if (MES == 11) {
+                MesIni = ObjMes.getNoviembreIni();
+                MesFin = ObjMes.getNoviembreFin();
+            } else if (MES == 12) {
+                MesIni = ObjMes.getDiciembreIni();
+                MesFin = ObjMes.getDiciembreFin();
+            }
+
+
+        CalcularSemanaDB ObjSema = new CalcularSemanaDB();
 
         if(Semana == 0){
             Semana = 1;
         }
-
-
         if (Semana == 1){
             SemanaIni = ObjSema.getSemana1Ini();
             SemanaFin = ObjSema.getSemana1Fin();
@@ -391,227 +332,536 @@ public class UtilidadGral {
         }
 
 
-
-
     }//public void TomarFechas ()
 
     public void RangoFechas (){
 
-        CalcularSemana ObjSema2 = new CalcularSemana();
 
-        if (Integer.parseInt(SemanaDesde) == 1){
-            SemanaRanIni = ObjSema2.getSemana1Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 2){
-            SemanaRanIni = ObjSema2.getSemana2Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 3){
-            SemanaRanIni = ObjSema2.getSemana3Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 4){
-            SemanaRanIni = ObjSema2.getSemana4Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 5){
-            SemanaRanIni = ObjSema2.getSemana5Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 6){
-            SemanaRanIni = ObjSema2.getSemana6Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 7){
-            SemanaRanIni = ObjSema2.getSemana7Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 8){
-            SemanaRanIni = ObjSema2.getSemana8Ini();
-        }  else if (Integer.parseInt(SemanaDesde) == 9){
-            SemanaRanIni = ObjSema2.getSemana8Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 10){
-            SemanaRanIni = ObjSema2.getSemana10Ini();
-        }   else if (Integer.parseInt(SemanaDesde) == 11){
-            SemanaRanIni = ObjSema2.getSemana11Ini();
-        }  else if (Integer.parseInt(SemanaDesde) == 12){
-            SemanaRanIni = ObjSema2.getSemana12Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 13){
-            SemanaRanIni = ObjSema2.getSemana13Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 14){
-            SemanaRanIni = ObjSema2.getSemana14Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 15){
-            SemanaRanIni = ObjSema2.getSemana15Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 16){
-            SemanaRanIni = ObjSema2.getSemana16Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 17){
-            SemanaRanIni = ObjSema2.getSemana17Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 18){
-            SemanaRanIni = ObjSema2.getSemana18Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 19){
-            SemanaRanIni = ObjSema2.getSemana19Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 20){
-            SemanaRanIni = ObjSema2.getSemana20Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 21){
-            SemanaRanIni = ObjSema2.getSemana21Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 22){
-            SemanaRanIni = ObjSema2.getSemana22Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 23){
-            SemanaRanIni = ObjSema2.getSemana23Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 24){
-            SemanaRanIni = ObjSema2.getSemana24Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 25){
-            SemanaRanIni = ObjSema2.getSemana25Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 26){
-            SemanaRanIni = ObjSema2.getSemana26Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 27){
-            SemanaRanIni = ObjSema2.getSemana27Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 28){
-            SemanaRanIni = ObjSema2.getSemana28Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 29){
-            SemanaRanIni = ObjSema2.getSemana29Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 30){
-            SemanaRanIni = ObjSema2.getSemana30Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 31){
-            SemanaRanIni = ObjSema2.getSemana31Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 32){
-            SemanaRanIni = ObjSema2.getSemana32Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 33){
-            SemanaRanIni = ObjSema2.getSemana33Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 34){
-            SemanaRanIni = ObjSema2.getSemana34Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 35){
-            SemanaRanIni = ObjSema2.getSemana35Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 36){
-            SemanaRanIni = ObjSema2.getSemana36Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 37){
-            SemanaRanIni = ObjSema2.getSemana37Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 38){
-            SemanaRanIni = ObjSema2.getSemana38Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 39){
-            SemanaRanIni = ObjSema2.getSemana39Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 40){
-            SemanaRanIni = ObjSema2.getSemana40Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 41){
-            SemanaRanIni = ObjSema2.getSemana41Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 42){
-            SemanaRanIni = ObjSema2.getSemana42Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 43){
-            SemanaRanIni = ObjSema2.getSemana43Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 44){
-            SemanaRanIni = ObjSema2.getSemana44Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 45){
-            SemanaRanIni = ObjSema2.getSemana45Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 46){
-            SemanaRanIni = ObjSema2.getSemana46Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 47){
-            SemanaRanIni = ObjSema2.getSemana47Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 48){
-            SemanaRanIni = ObjSema2.getSemana48Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 49){
-            SemanaRanIni = ObjSema2.getSemana49Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 50){
-            SemanaRanIni = ObjSema2.getSemana50Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 51){
-            SemanaRanIni = ObjSema2.getSemana51Ini();
-        } else if (Integer.parseInt(SemanaDesde) == 52){
-            SemanaRanIni = ObjSema2.getSemana52Ini();
+        if (Integer.parseInt(Año) == 2016) {
+
+            CalcularMes ObjMes = new CalcularMes();
+
+            //Mes seleccionado
+
+            if (Integer.parseInt(MesSel) == 1) {
+                MesSelIni = ObjMes.getEneroIni();
+                MesSelFin = ObjMes.getEneroFin();
+            } else if (Integer.parseInt(MesSel) == 2) {
+                MesSelIni = ObjMes.getFebreroIni();
+                MesSelFin = ObjMes.getFebreroFin();
+            } else if (Integer.parseInt(MesSel) == 3) {
+                MesSelIni = ObjMes.getMarzoIni();
+                MesSelFin = ObjMes.getMArzoFin();
+            } else if (Integer.parseInt(MesSel) == 4) {
+                MesSelIni = ObjMes.getAbrilIni();
+                MesSelFin = ObjMes.getAbrilFin();
+            } else if (Integer.parseInt(MesSel) == 5) {
+                MesSelIni = ObjMes.getMayoIni();
+                MesSelFin = ObjMes.getMayoFin();
+            } else if (Integer.parseInt(MesSel) == 6) {
+                MesSelIni = ObjMes.getJunioIni();
+                MesSelFin = ObjMes.getJunioFin();
+            } else if (Integer.parseInt(MesSel) == 7) {
+                MesSelIni = ObjMes.getJulioIni();
+                MesSelFin = ObjMes.getJulioFin();
+            } else if (Integer.parseInt(MesSel) == 8) {
+                MesSelIni = ObjMes.getAgostoIni();
+                MesSelFin = ObjMes.getAgostoFin();
+            } else if (Integer.parseInt(MesSel) == 9) {
+                MesSelIni = ObjMes.getSeptiembreIni();
+                MesSelFin = ObjMes.getSeptiembreFin();
+            } else if (Integer.parseInt(MesSel) == 10) {
+                MesSelIni = ObjMes.getOctubreIni();
+                MesSelFin = ObjMes.getOctubreFin();
+            } else if (Integer.parseInt(MesSel) == 11) {
+                MesSelIni = ObjMes.getNoviembreIni();
+                MesSelFin = ObjMes.getNoviembreFin();
+            } else if (Integer.parseInt(MesSel) == 12) {
+                MesSelIni = ObjMes.getDiciembreIni();
+                MesSelFin = ObjMes.getDiciembreFin();
+            }
+
+            CalcularSemana ObjSema2 = new CalcularSemana();
+
+            if (Integer.parseInt(SemanaDesde) == 1) {
+                SemanaRanIni = ObjSema2.getSemana1Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 2) {
+                SemanaRanIni = ObjSema2.getSemana2Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 3) {
+                SemanaRanIni = ObjSema2.getSemana3Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 4) {
+                SemanaRanIni = ObjSema2.getSemana4Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 5) {
+                SemanaRanIni = ObjSema2.getSemana5Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 6) {
+                SemanaRanIni = ObjSema2.getSemana6Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 7) {
+                SemanaRanIni = ObjSema2.getSemana7Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 8) {
+                SemanaRanIni = ObjSema2.getSemana8Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 9) {
+                SemanaRanIni = ObjSema2.getSemana8Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 10) {
+                SemanaRanIni = ObjSema2.getSemana10Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 11) {
+                SemanaRanIni = ObjSema2.getSemana11Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 12) {
+                SemanaRanIni = ObjSema2.getSemana12Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 13) {
+                SemanaRanIni = ObjSema2.getSemana13Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 14) {
+                SemanaRanIni = ObjSema2.getSemana14Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 15) {
+                SemanaRanIni = ObjSema2.getSemana15Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 16) {
+                SemanaRanIni = ObjSema2.getSemana16Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 17) {
+                SemanaRanIni = ObjSema2.getSemana17Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 18) {
+                SemanaRanIni = ObjSema2.getSemana18Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 19) {
+                SemanaRanIni = ObjSema2.getSemana19Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 20) {
+                SemanaRanIni = ObjSema2.getSemana20Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 21) {
+                SemanaRanIni = ObjSema2.getSemana21Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 22) {
+                SemanaRanIni = ObjSema2.getSemana22Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 23) {
+                SemanaRanIni = ObjSema2.getSemana23Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 24) {
+                SemanaRanIni = ObjSema2.getSemana24Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 25) {
+                SemanaRanIni = ObjSema2.getSemana25Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 26) {
+                SemanaRanIni = ObjSema2.getSemana26Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 27) {
+                SemanaRanIni = ObjSema2.getSemana27Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 28) {
+                SemanaRanIni = ObjSema2.getSemana28Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 29) {
+                SemanaRanIni = ObjSema2.getSemana29Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 30) {
+                SemanaRanIni = ObjSema2.getSemana30Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 31) {
+                SemanaRanIni = ObjSema2.getSemana31Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 32) {
+                SemanaRanIni = ObjSema2.getSemana32Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 33) {
+                SemanaRanIni = ObjSema2.getSemana33Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 34) {
+                SemanaRanIni = ObjSema2.getSemana34Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 35) {
+                SemanaRanIni = ObjSema2.getSemana35Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 36) {
+                SemanaRanIni = ObjSema2.getSemana36Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 37) {
+                SemanaRanIni = ObjSema2.getSemana37Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 38) {
+                SemanaRanIni = ObjSema2.getSemana38Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 39) {
+                SemanaRanIni = ObjSema2.getSemana39Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 40) {
+                SemanaRanIni = ObjSema2.getSemana40Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 41) {
+                SemanaRanIni = ObjSema2.getSemana41Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 42) {
+                SemanaRanIni = ObjSema2.getSemana42Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 43) {
+                SemanaRanIni = ObjSema2.getSemana43Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 44) {
+                SemanaRanIni = ObjSema2.getSemana44Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 45) {
+                SemanaRanIni = ObjSema2.getSemana45Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 46) {
+                SemanaRanIni = ObjSema2.getSemana46Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 47) {
+                SemanaRanIni = ObjSema2.getSemana47Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 48) {
+                SemanaRanIni = ObjSema2.getSemana48Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 49) {
+                SemanaRanIni = ObjSema2.getSemana49Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 50) {
+                SemanaRanIni = ObjSema2.getSemana50Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 51) {
+                SemanaRanIni = ObjSema2.getSemana51Ini();
+            } else if (Integer.parseInt(SemanaDesde) == 52) {
+                SemanaRanIni = ObjSema2.getSemana52Ini();
+            }
+
+
+            if (Integer.parseInt(SemanaHasta) == 1) {
+                SemanaRanFin = ObjSema2.getSemana1Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 2) {
+                SemanaRanFin = ObjSema2.getSemana2Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 3) {
+                SemanaRanFin = ObjSema2.getSemana3Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 4) {
+                SemanaRanFin = ObjSema2.getSemana4Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 5) {
+                SemanaRanFin = ObjSema2.getSemana5Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 6) {
+                SemanaRanFin = ObjSema2.getSemana6Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 7) {
+                SemanaRanFin = ObjSema2.getSemana7Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 8) {
+                SemanaRanFin = ObjSema2.getSemana8Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 9) {
+                SemanaRanFin = ObjSema2.getSemana8Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 10) {
+                SemanaRanFin = ObjSema2.getSemana10Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 11) {
+                SemanaRanFin = ObjSema2.getSemana11Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 12) {
+                SemanaRanFin = ObjSema2.getSemana12Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 13) {
+                SemanaRanFin = ObjSema2.getSemana13Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 14) {
+                SemanaRanFin = ObjSema2.getSemana14Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 15) {
+                SemanaRanFin = ObjSema2.getSemana15Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 16) {
+                SemanaRanFin = ObjSema2.getSemana16Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 17) {
+                SemanaRanFin = ObjSema2.getSemana17Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 18) {
+                SemanaRanFin = ObjSema2.getSemana18Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 19) {
+                SemanaRanFin = ObjSema2.getSemana19Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 20) {
+                SemanaRanFin = ObjSema2.getSemana20Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 21) {
+                SemanaRanFin = ObjSema2.getSemana21Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 22) {
+                SemanaRanFin = ObjSema2.getSemana22Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 23) {
+                SemanaRanFin = ObjSema2.getSemana23Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 24) {
+                SemanaRanFin = ObjSema2.getSemana24Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 25) {
+                SemanaRanFin = ObjSema2.getSemana25Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 26) {
+                SemanaRanFin = ObjSema2.getSemana26Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 27) {
+                SemanaRanFin = ObjSema2.getSemana27Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 28) {
+                SemanaRanFin = ObjSema2.getSemana28Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 29) {
+                SemanaRanFin = ObjSema2.getSemana29Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 30) {
+                SemanaRanFin = ObjSema2.getSemana30Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 31) {
+                SemanaRanFin = ObjSema2.getSemana31Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 32) {
+                SemanaRanFin = ObjSema2.getSemana32Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 33) {
+                SemanaRanFin = ObjSema2.getSemana33Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 34) {
+                SemanaRanFin = ObjSema2.getSemana34Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 35) {
+                SemanaRanFin = ObjSema2.getSemana35Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 36) {
+                SemanaRanFin = ObjSema2.getSemana36Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 37) {
+                SemanaRanFin = ObjSema2.getSemana37Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 38) {
+                SemanaRanFin = ObjSema2.getSemana38Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 39) {
+                SemanaRanFin = ObjSema2.getSemana39Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 40) {
+                SemanaRanFin = ObjSema2.getSemana40Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 41) {
+                SemanaRanFin = ObjSema2.getSemana41Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 42) {
+                SemanaRanFin = ObjSema2.getSemana42Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 43) {
+                SemanaRanFin = ObjSema2.getSemana43Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 44) {
+                SemanaRanFin = ObjSema2.getSemana44Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 45) {
+                SemanaRanFin = ObjSema2.getSemana45Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 46) {
+                SemanaRanFin = ObjSema2.getSemana46Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 47) {
+                SemanaRanFin = ObjSema2.getSemana47Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 48) {
+                SemanaRanFin = ObjSema2.getSemana48Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 49) {
+                SemanaRanFin = ObjSema2.getSemana49Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 50) {
+                SemanaRanFin = ObjSema2.getSemana50Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 51) {
+                SemanaRanFin = ObjSema2.getSemana51Fin();
+            } else if (Integer.parseInt(SemanaHasta) == 52) {
+                SemanaRanFin = ObjSema2.getSemana52Fin();
+            }
+
         }
 
 
+        else if (Integer.parseInt(Año) == 2017) {
 
-        if (Integer.parseInt(SemanaHasta) == 1){
-            SemanaRanFin = ObjSema2.getSemana1Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 2){
-            SemanaRanFin = ObjSema2.getSemana2Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 3){
-            SemanaRanFin = ObjSema2.getSemana3Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 4){
-            SemanaRanFin = ObjSema2.getSemana4Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 5){
-            SemanaRanFin = ObjSema2.getSemana5Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 6){
-            SemanaRanFin = ObjSema2.getSemana6Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 7){
-            SemanaRanFin = ObjSema2.getSemana7Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 8){
-            SemanaRanFin = ObjSema2.getSemana8Fin();
-        }  else if (Integer.parseInt(SemanaHasta) == 9){
-            SemanaRanFin = ObjSema2.getSemana8Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 10){
-            SemanaRanFin = ObjSema2.getSemana10Fin();
-        }   else if (Integer.parseInt(SemanaHasta) == 11){
-            SemanaRanFin = ObjSema2.getSemana11Fin();
-        }  else if (Integer.parseInt(SemanaHasta) == 12){
-            SemanaRanFin = ObjSema2.getSemana12Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 13){
-            SemanaRanFin = ObjSema2.getSemana13Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 14){
-            SemanaRanFin = ObjSema2.getSemana14Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 15){
-            SemanaRanFin = ObjSema2.getSemana15Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 16){
-            SemanaRanFin = ObjSema2.getSemana16Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 17){
-            SemanaRanFin = ObjSema2.getSemana17Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 18){
-            SemanaRanFin = ObjSema2.getSemana18Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 19){
-            SemanaRanFin = ObjSema2.getSemana19Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 20){
-            SemanaRanFin = ObjSema2.getSemana20Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 21){
-            SemanaRanFin = ObjSema2.getSemana21Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 22){
-            SemanaRanFin = ObjSema2.getSemana22Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 23){
-            SemanaRanFin = ObjSema2.getSemana23Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 24){
-            SemanaRanFin = ObjSema2.getSemana24Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 25){
-            SemanaRanFin = ObjSema2.getSemana25Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 26){
-            SemanaRanFin = ObjSema2.getSemana26Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 27){
-            SemanaRanFin = ObjSema2.getSemana27Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 28){
-            SemanaRanFin = ObjSema2.getSemana28Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 29){
-            SemanaRanFin = ObjSema2.getSemana29Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 30){
-            SemanaRanFin = ObjSema2.getSemana30Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 31){
-            SemanaRanFin = ObjSema2.getSemana31Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 32){
-            SemanaRanFin = ObjSema2.getSemana32Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 33){
-            SemanaRanFin = ObjSema2.getSemana33Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 34){
-            SemanaRanFin = ObjSema2.getSemana34Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 35){
-            SemanaRanFin = ObjSema2.getSemana35Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 36){
-            SemanaRanFin = ObjSema2.getSemana36Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 37){
-            SemanaRanFin = ObjSema2.getSemana37Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 38){
-            SemanaRanFin = ObjSema2.getSemana38Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 39){
-            SemanaRanFin = ObjSema2.getSemana39Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 40){
-            SemanaRanFin = ObjSema2.getSemana40Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 41){
-            SemanaRanFin = ObjSema2.getSemana41Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 42){
-            SemanaRanFin = ObjSema2.getSemana42Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 43){
-            SemanaRanFin = ObjSema2.getSemana43Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 44){
-            SemanaRanFin = ObjSema2.getSemana44Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 45){
-            SemanaRanFin = ObjSema2.getSemana45Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 46){
-            SemanaRanFin = ObjSema2.getSemana46Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 47){
-            SemanaRanFin = ObjSema2.getSemana47Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 48){
-            SemanaRanFin = ObjSema2.getSemana48Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 49){
-            SemanaRanFin = ObjSema2.getSemana49Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 50){
-            SemanaRanFin = ObjSema2.getSemana50Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 51){
-            SemanaRanFin = ObjSema2.getSemana51Fin();
-        } else if (Integer.parseInt(SemanaHasta) == 52){
-            SemanaRanFin = ObjSema2.getSemana52Fin();
+                CalcularMesDB ObjMes = new CalcularMesDB();
+
+                if (Integer.parseInt(MesSel) == 1) {
+                    MesSelIni = ObjMes.getEneroIni();
+                    MesSelFin = ObjMes.getEneroFin();
+                } else if (Integer.parseInt(MesSel) == 2) {
+                    MesSelIni = ObjMes.getFebreroIni();
+                    MesSelFin = ObjMes.getFebreroFin();
+                } else if (Integer.parseInt(MesSel) == 3) {
+                    MesSelIni = ObjMes.getMarzoIni();
+                    MesSelFin = ObjMes.getMArzoFin();
+                } else if (Integer.parseInt(MesSel) == 4) {
+                    MesSelIni = ObjMes.getAbrilIni();
+                    MesSelFin = ObjMes.getAbrilFin();
+                } else if (Integer.parseInt(MesSel) == 5) {
+                    MesSelIni = ObjMes.getMayoIni();
+                    MesSelFin = ObjMes.getMayoFin();
+                } else if (Integer.parseInt(MesSel) == 6) {
+                    MesSelIni = ObjMes.getJunioIni();
+                    MesSelFin = ObjMes.getJunioFin();
+                } else if (Integer.parseInt(MesSel) == 7) {
+                    MesSelIni = ObjMes.getJulioIni();
+                    MesSelFin = ObjMes.getJulioFin();
+                } else if (Integer.parseInt(MesSel) == 8) {
+                    MesSelIni = ObjMes.getAgostoIni();
+                    MesSelFin = ObjMes.getAgostoFin();
+                } else if (Integer.parseInt(MesSel) == 9) {
+                    MesSelIni = ObjMes.getSeptiembreIni();
+                    MesSelFin = ObjMes.getSeptiembreFin();
+                } else if (Integer.parseInt(MesSel) == 10) {
+                    MesSelIni = ObjMes.getOctubreIni();
+                    MesSelFin = ObjMes.getOctubreFin();
+                } else if (Integer.parseInt(MesSel) == 11) {
+                    MesSelIni = ObjMes.getNoviembreIni();
+                    MesSelFin = ObjMes.getNoviembreFin();
+                } else if (Integer.parseInt(MesSel) == 12) {
+                    MesSelIni = ObjMes.getDiciembreIni();
+                    MesSelFin = ObjMes.getDiciembreFin();
+                }
+
+                //Mes seleccionado
+
+                CalcularSemanaDB ObjSema2 = new CalcularSemanaDB();
+
+                if (Integer.parseInt(SemanaDesde) == 1) {
+                    SemanaRanIni = ObjSema2.getSemana1Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 2) {
+                    SemanaRanIni = ObjSema2.getSemana2Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 3) {
+                    SemanaRanIni = ObjSema2.getSemana3Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 4) {
+                    SemanaRanIni = ObjSema2.getSemana4Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 5) {
+                    SemanaRanIni = ObjSema2.getSemana5Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 6) {
+                    SemanaRanIni = ObjSema2.getSemana6Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 7) {
+                    SemanaRanIni = ObjSema2.getSemana7Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 8) {
+                    SemanaRanIni = ObjSema2.getSemana8Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 9) {
+                    SemanaRanIni = ObjSema2.getSemana8Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 10) {
+                    SemanaRanIni = ObjSema2.getSemana10Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 11) {
+                    SemanaRanIni = ObjSema2.getSemana11Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 12) {
+                    SemanaRanIni = ObjSema2.getSemana12Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 13) {
+                    SemanaRanIni = ObjSema2.getSemana13Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 14) {
+                    SemanaRanIni = ObjSema2.getSemana14Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 15) {
+                    SemanaRanIni = ObjSema2.getSemana15Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 16) {
+                    SemanaRanIni = ObjSema2.getSemana16Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 17) {
+                    SemanaRanIni = ObjSema2.getSemana17Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 18) {
+                    SemanaRanIni = ObjSema2.getSemana18Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 19) {
+                    SemanaRanIni = ObjSema2.getSemana19Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 20) {
+                    SemanaRanIni = ObjSema2.getSemana20Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 21) {
+                    SemanaRanIni = ObjSema2.getSemana21Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 22) {
+                    SemanaRanIni = ObjSema2.getSemana22Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 23) {
+                    SemanaRanIni = ObjSema2.getSemana23Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 24) {
+                    SemanaRanIni = ObjSema2.getSemana24Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 25) {
+                    SemanaRanIni = ObjSema2.getSemana25Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 26) {
+                    SemanaRanIni = ObjSema2.getSemana26Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 27) {
+                    SemanaRanIni = ObjSema2.getSemana27Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 28) {
+                    SemanaRanIni = ObjSema2.getSemana28Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 29) {
+                    SemanaRanIni = ObjSema2.getSemana29Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 30) {
+                    SemanaRanIni = ObjSema2.getSemana30Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 31) {
+                    SemanaRanIni = ObjSema2.getSemana31Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 32) {
+                    SemanaRanIni = ObjSema2.getSemana32Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 33) {
+                    SemanaRanIni = ObjSema2.getSemana33Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 34) {
+                    SemanaRanIni = ObjSema2.getSemana34Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 35) {
+                    SemanaRanIni = ObjSema2.getSemana35Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 36) {
+                    SemanaRanIni = ObjSema2.getSemana36Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 37) {
+                    SemanaRanIni = ObjSema2.getSemana37Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 38) {
+                    SemanaRanIni = ObjSema2.getSemana38Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 39) {
+                    SemanaRanIni = ObjSema2.getSemana39Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 40) {
+                    SemanaRanIni = ObjSema2.getSemana40Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 41) {
+                    SemanaRanIni = ObjSema2.getSemana41Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 42) {
+                    SemanaRanIni = ObjSema2.getSemana42Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 43) {
+                    SemanaRanIni = ObjSema2.getSemana43Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 44) {
+                    SemanaRanIni = ObjSema2.getSemana44Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 45) {
+                    SemanaRanIni = ObjSema2.getSemana45Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 46) {
+                    SemanaRanIni = ObjSema2.getSemana46Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 47) {
+                    SemanaRanIni = ObjSema2.getSemana47Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 48) {
+                    SemanaRanIni = ObjSema2.getSemana48Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 49) {
+                    SemanaRanIni = ObjSema2.getSemana49Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 50) {
+                    SemanaRanIni = ObjSema2.getSemana50Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 51) {
+                    SemanaRanIni = ObjSema2.getSemana51Ini();
+                } else if (Integer.parseInt(SemanaDesde) == 52) {
+                    SemanaRanIni = ObjSema2.getSemana52Ini();
+                }
+
+
+                if (Integer.parseInt(SemanaHasta) == 1) {
+                    SemanaRanFin = ObjSema2.getSemana1Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 2) {
+                    SemanaRanFin = ObjSema2.getSemana2Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 3) {
+                    SemanaRanFin = ObjSema2.getSemana3Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 4) {
+                    SemanaRanFin = ObjSema2.getSemana4Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 5) {
+                    SemanaRanFin = ObjSema2.getSemana5Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 6) {
+                    SemanaRanFin = ObjSema2.getSemana6Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 7) {
+                    SemanaRanFin = ObjSema2.getSemana7Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 8) {
+                    SemanaRanFin = ObjSema2.getSemana8Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 9) {
+                    SemanaRanFin = ObjSema2.getSemana8Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 10) {
+                    SemanaRanFin = ObjSema2.getSemana10Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 11) {
+                    SemanaRanFin = ObjSema2.getSemana11Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 12) {
+                    SemanaRanFin = ObjSema2.getSemana12Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 13) {
+                    SemanaRanFin = ObjSema2.getSemana13Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 14) {
+                    SemanaRanFin = ObjSema2.getSemana14Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 15) {
+                    SemanaRanFin = ObjSema2.getSemana15Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 16) {
+                    SemanaRanFin = ObjSema2.getSemana16Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 17) {
+                    SemanaRanFin = ObjSema2.getSemana17Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 18) {
+                    SemanaRanFin = ObjSema2.getSemana18Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 19) {
+                    SemanaRanFin = ObjSema2.getSemana19Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 20) {
+                    SemanaRanFin = ObjSema2.getSemana20Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 21) {
+                    SemanaRanFin = ObjSema2.getSemana21Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 22) {
+                    SemanaRanFin = ObjSema2.getSemana22Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 23) {
+                    SemanaRanFin = ObjSema2.getSemana23Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 24) {
+                    SemanaRanFin = ObjSema2.getSemana24Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 25) {
+                    SemanaRanFin = ObjSema2.getSemana25Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 26) {
+                    SemanaRanFin = ObjSema2.getSemana26Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 27) {
+                    SemanaRanFin = ObjSema2.getSemana27Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 28) {
+                    SemanaRanFin = ObjSema2.getSemana28Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 29) {
+                    SemanaRanFin = ObjSema2.getSemana29Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 30) {
+                    SemanaRanFin = ObjSema2.getSemana30Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 31) {
+                    SemanaRanFin = ObjSema2.getSemana31Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 32) {
+                    SemanaRanFin = ObjSema2.getSemana32Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 33) {
+                    SemanaRanFin = ObjSema2.getSemana33Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 34) {
+                    SemanaRanFin = ObjSema2.getSemana34Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 35) {
+                    SemanaRanFin = ObjSema2.getSemana35Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 36) {
+                    SemanaRanFin = ObjSema2.getSemana36Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 37) {
+                    SemanaRanFin = ObjSema2.getSemana37Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 38) {
+                    SemanaRanFin = ObjSema2.getSemana38Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 39) {
+                    SemanaRanFin = ObjSema2.getSemana39Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 40) {
+                    SemanaRanFin = ObjSema2.getSemana40Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 41) {
+                    SemanaRanFin = ObjSema2.getSemana41Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 42) {
+                    SemanaRanFin = ObjSema2.getSemana42Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 43) {
+                    SemanaRanFin = ObjSema2.getSemana43Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 44) {
+                    SemanaRanFin = ObjSema2.getSemana44Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 45) {
+                    SemanaRanFin = ObjSema2.getSemana45Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 46) {
+                    SemanaRanFin = ObjSema2.getSemana46Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 47) {
+                    SemanaRanFin = ObjSema2.getSemana47Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 48) {
+                    SemanaRanFin = ObjSema2.getSemana48Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 49) {
+                    SemanaRanFin = ObjSema2.getSemana49Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 50) {
+                    SemanaRanFin = ObjSema2.getSemana50Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 51) {
+                    SemanaRanFin = ObjSema2.getSemana51Fin();
+                } else if (Integer.parseInt(SemanaHasta) == 52) {
+                    SemanaRanFin = ObjSema2.getSemana52Fin();
+                }
+
+
+
         }
+
 
     }// public void RangoFechas ()
     

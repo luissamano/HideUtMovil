@@ -4,7 +4,9 @@ import android.util.Log;
 
 import com.example.luissam.hideutmovil.Conexion.CONN;
 import com.example.luissam.hideutmovil.FuncionesParaFechas.CalcularMes;
+import com.example.luissam.hideutmovil.FuncionesParaFechas.CalcularMesDB;
 import com.example.luissam.hideutmovil.FuncionesParaFechas.CalcularSemana;
+import com.example.luissam.hideutmovil.FuncionesParaFechas.CalcularSemanaDB;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -360,7 +362,7 @@ public class UtilidadAvan {
         MES = calendarNow.get(Calendar.MONTH) + 1;
         DIAMES = calendarNow.get(Calendar.DAY_OF_MONTH) ;
 
-        CalcularMes ObjMes = new CalcularMes();
+        CalcularMesDB ObjMes = new CalcularMesDB();
 
         //Mes Actual
 
@@ -413,60 +415,9 @@ public class UtilidadAvan {
             MesFin = ObjMes.getDiciembreFin();
         }
 
-        
-        //Mes Seleccionado
-        
-        if (Integer.parseInt(MesSel) == 1) {
-            MesRanIni = ObjMes.getEneroIni();
-            MesRanFin = ObjMes.getEneroFin();
-        }
-        else if (Integer.parseInt(MesSel) == 2){
-            MesRanIni = ObjMes.getFebreroIni();
-            MesRanFin = ObjMes.getFebreroFin();
-        }
-        else if (Integer.parseInt(MesSel) == 3){
-            MesRanIni = ObjMes.getMarzoIni();
-            MesRanFin = ObjMes.getMArzoFin();
-        }
-        else if (Integer.parseInt(MesSel) == 4){
-            MesRanIni = ObjMes.getAbrilIni();
-            MesRanFin = ObjMes.getAbrilFin();
-        }
-        else if (Integer.parseInt(MesSel) == 5){
-            MesRanIni = ObjMes.getMayoIni();
-            MesRanFin = ObjMes.getMayoFin();
-        }
-        else if (Integer.parseInt(MesSel) == 6){
-            MesRanIni = ObjMes.getJunioIni();
-            MesRanFin = ObjMes.getJunioFin();
-        }
-        else if (Integer.parseInt(MesSel) == 7){
-            MesRanIni = ObjMes.getJulioIni();
-            MesRanFin = ObjMes.getJulioFin();
-        }
-        else if (Integer.parseInt(MesSel) == 8){
-            MesRanIni = ObjMes.getAgostoIni();
-            MesRanFin = ObjMes.getAgostoFin();
-        }
-        else if (Integer.parseInt(MesSel) == 9){
-            MesRanIni = ObjMes.getSeptiembreIni();
-            MesRanFin = ObjMes.getSeptiembreFin();
-        }
-        else if (Integer.parseInt(MesSel) == 10){
-            MesRanIni = ObjMes.getOctubreIni();
-            MesRanFin = ObjMes.getOctubreFin();
-        }
-        else if (Integer.parseInt(MesSel) == 11){
-            MesRanIni = ObjMes.getNoviembreIni();
-            MesRanFin = ObjMes.getNoviembreFin();
-        }
-        else if (Integer.parseInt(MesSel) == 12){
-            MesRanIni = ObjMes.getDiciembreIni();
-            MesRanFin = ObjMes.getDiciembreFin();
-        }
-        
-        
-        CalcularSemana ObjSema = new CalcularSemana();
+
+
+        CalcularSemanaDB ObjSema = new CalcularSemanaDB();
 
         if(Semana == 0){
             Semana = 1;
@@ -635,220 +586,549 @@ public class UtilidadAvan {
 
     public void RangoFechas (){
 
-        CalcularSemana ObjSema2 = new CalcularSemana();
+        if (Integer.parseInt(año) == 2016) {
 
-        if (Integer.parseInt(semDe) == 1){
-            SemanaRanIni = ObjSema2.getSemana1Ini();
-        } else if (Integer.parseInt(semDe) == 2){
-            SemanaRanIni = ObjSema2.getSemana2Ini();
-        } else if (Integer.parseInt(semDe) == 3){
-            SemanaRanIni = ObjSema2.getSemana3Ini();
-        } else if (Integer.parseInt(semDe) == 4){
-            SemanaRanIni = ObjSema2.getSemana4Ini();
-        } else if (Integer.parseInt(semDe) == 5){
-            SemanaRanIni = ObjSema2.getSemana5Ini();
-        } else if (Integer.parseInt(semDe) == 6){
-            SemanaRanIni = ObjSema2.getSemana6Ini();
-        } else if (Integer.parseInt(semDe) == 7){
-            SemanaRanIni = ObjSema2.getSemana7Ini();
-        } else if (Integer.parseInt(semDe) == 8){
-            SemanaRanIni = ObjSema2.getSemana8Ini();
-        }  else if (Integer.parseInt(semDe) == 9){
-            SemanaRanIni = ObjSema2.getSemana8Ini();
-        } else if (Integer.parseInt(semDe) == 10){
-            SemanaRanIni = ObjSema2.getSemana10Ini();
-        }   else if (Integer.parseInt(semDe) == 11){
-            SemanaRanIni = ObjSema2.getSemana11Ini();
-        }  else if (Integer.parseInt(semDe) == 12){
-            SemanaRanIni = ObjSema2.getSemana12Ini();
-        } else if (Integer.parseInt(semDe) == 13){
-            SemanaRanIni = ObjSema2.getSemana13Ini();
-        } else if (Integer.parseInt(semDe) == 14){
-            SemanaRanIni = ObjSema2.getSemana14Ini();
-        } else if (Integer.parseInt(semDe) == 15){
-            SemanaRanIni = ObjSema2.getSemana15Ini();
-        } else if (Integer.parseInt(semDe) == 16){
-            SemanaRanIni = ObjSema2.getSemana16Ini();
-        } else if (Integer.parseInt(semDe) == 17){
-            SemanaRanIni = ObjSema2.getSemana17Ini();
-        } else if (Integer.parseInt(semDe) == 18){
-            SemanaRanIni = ObjSema2.getSemana18Ini();
-        } else if (Integer.parseInt(semDe) == 19){
-            SemanaRanIni = ObjSema2.getSemana19Ini();
-        } else if (Integer.parseInt(semDe) == 20){
-            SemanaRanIni = ObjSema2.getSemana20Ini();
-        } else if (Integer.parseInt(semDe) == 21){
-            SemanaRanIni = ObjSema2.getSemana21Ini();
-        } else if (Integer.parseInt(semDe) == 22){
-            SemanaRanIni = ObjSema2.getSemana22Ini();
-        } else if (Integer.parseInt(semDe) == 23){
-            SemanaRanIni = ObjSema2.getSemana23Ini();
-        } else if (Integer.parseInt(semDe) == 24){
-            SemanaRanIni = ObjSema2.getSemana24Ini();
-        } else if (Integer.parseInt(semDe) == 25){
-            SemanaRanIni = ObjSema2.getSemana25Ini();
-        } else if (Integer.parseInt(semDe) == 26){
-            SemanaRanIni = ObjSema2.getSemana26Ini();
-        } else if (Integer.parseInt(semDe) == 27){
-            SemanaRanIni = ObjSema2.getSemana27Ini();
-        } else if (Integer.parseInt(semDe) == 28){
-            SemanaRanIni = ObjSema2.getSemana28Ini();
-        } else if (Integer.parseInt(semDe) == 29){
-            SemanaRanIni = ObjSema2.getSemana29Ini();
-        } else if (Integer.parseInt(semDe) == 30){
-            SemanaRanIni = ObjSema2.getSemana30Ini();
-        } else if (Integer.parseInt(semDe) == 31){
-            SemanaRanIni = ObjSema2.getSemana31Ini();
-        } else if (Integer.parseInt(semDe) == 32){
-            SemanaRanIni = ObjSema2.getSemana32Ini();
-        } else if (Integer.parseInt(semDe) == 33){
-            SemanaRanIni = ObjSema2.getSemana33Ini();
-        } else if (Integer.parseInt(semDe) == 34){
-            SemanaRanIni = ObjSema2.getSemana34Ini();
-        } else if (Integer.parseInt(semDe) == 35){
-            SemanaRanIni = ObjSema2.getSemana35Ini();
-        } else if (Integer.parseInt(semDe) == 36){
-            SemanaRanIni = ObjSema2.getSemana36Ini();
-        } else if (Integer.parseInt(semDe) == 37){
-            SemanaRanIni = ObjSema2.getSemana37Ini();
-        } else if (Integer.parseInt(semDe) == 38){
-            SemanaRanIni = ObjSema2.getSemana38Ini();
-        } else if (Integer.parseInt(semDe) == 39){
-            SemanaRanIni = ObjSema2.getSemana39Ini();
-        } else if (Integer.parseInt(semDe) == 40){
-            SemanaRanIni = ObjSema2.getSemana40Ini();
-        } else if (Integer.parseInt(semDe) == 41){
-            SemanaRanIni = ObjSema2.getSemana41Ini();
-        } else if (Integer.parseInt(semDe) == 42){
-            SemanaRanIni = ObjSema2.getSemana42Ini();
-        } else if (Integer.parseInt(semDe) == 43){
-            SemanaRanIni = ObjSema2.getSemana43Ini();
-        } else if (Integer.parseInt(semDe) == 44){
-            SemanaRanIni = ObjSema2.getSemana44Ini();
-        } else if (Integer.parseInt(semDe) == 45){
-            SemanaRanIni = ObjSema2.getSemana45Ini();
-        } else if (Integer.parseInt(semDe) == 46){
-            SemanaRanIni = ObjSema2.getSemana46Ini();
-        } else if (Integer.parseInt(semDe) == 47){
-            SemanaRanIni = ObjSema2.getSemana47Ini();
-        } else if (Integer.parseInt(semDe) == 48){
-            SemanaRanIni = ObjSema2.getSemana48Ini();
-        } else if (Integer.parseInt(semDe) == 49){
-            SemanaRanIni = ObjSema2.getSemana49Ini();
-        } else if (Integer.parseInt(semDe) == 50){
-            SemanaRanIni = ObjSema2.getSemana50Ini();
-        } else if (Integer.parseInt(semDe) == 51){
-            SemanaRanIni = ObjSema2.getSemana51Ini();
-        } else if (Integer.parseInt(semDe) == 52){
-            SemanaRanIni = ObjSema2.getSemana52Ini();
+            CalcularMes ObjMes = new CalcularMes();
+
+            //Mes Seleccionado
+
+            if (Integer.parseInt(MesSel) == 1) {
+                MesRanIni = ObjMes.getEneroIni();
+                MesRanFin = ObjMes.getEneroFin();
+            }
+            else if (Integer.parseInt(MesSel) == 2){
+                MesRanIni = ObjMes.getFebreroIni();
+                MesRanFin = ObjMes.getFebreroFin();
+            }
+            else if (Integer.parseInt(MesSel) == 3){
+                MesRanIni = ObjMes.getMarzoIni();
+                MesRanFin = ObjMes.getMArzoFin();
+            }
+            else if (Integer.parseInt(MesSel) == 4){
+                MesRanIni = ObjMes.getAbrilIni();
+                MesRanFin = ObjMes.getAbrilFin();
+            }
+            else if (Integer.parseInt(MesSel) == 5){
+                MesRanIni = ObjMes.getMayoIni();
+                MesRanFin = ObjMes.getMayoFin();
+            }
+            else if (Integer.parseInt(MesSel) == 6){
+                MesRanIni = ObjMes.getJunioIni();
+                MesRanFin = ObjMes.getJunioFin();
+            }
+            else if (Integer.parseInt(MesSel) == 7){
+                MesRanIni = ObjMes.getJulioIni();
+                MesRanFin = ObjMes.getJulioFin();
+            }
+            else if (Integer.parseInt(MesSel) == 8){
+                MesRanIni = ObjMes.getAgostoIni();
+                MesRanFin = ObjMes.getAgostoFin();
+            }
+            else if (Integer.parseInt(MesSel) == 9){
+                MesRanIni = ObjMes.getSeptiembreIni();
+                MesRanFin = ObjMes.getSeptiembreFin();
+            }
+            else if (Integer.parseInt(MesSel) == 10){
+                MesRanIni = ObjMes.getOctubreIni();
+                MesRanFin = ObjMes.getOctubreFin();
+            }
+            else if (Integer.parseInt(MesSel) == 11){
+                MesRanIni = ObjMes.getNoviembreIni();
+                MesRanFin = ObjMes.getNoviembreFin();
+            }
+            else if (Integer.parseInt(MesSel) == 12){
+                MesRanIni = ObjMes.getDiciembreIni();
+                MesRanFin = ObjMes.getDiciembreFin();
+            }
+
+            CalcularSemana ObjSema2 = new CalcularSemana();
+
+            if (Integer.parseInt(semDe) == 1) {
+                SemanaRanIni = ObjSema2.getSemana1Ini();
+            } else if (Integer.parseInt(semDe) == 2) {
+                SemanaRanIni = ObjSema2.getSemana2Ini();
+            } else if (Integer.parseInt(semDe) == 3) {
+                SemanaRanIni = ObjSema2.getSemana3Ini();
+            } else if (Integer.parseInt(semDe) == 4) {
+                SemanaRanIni = ObjSema2.getSemana4Ini();
+            } else if (Integer.parseInt(semDe) == 5) {
+                SemanaRanIni = ObjSema2.getSemana5Ini();
+            } else if (Integer.parseInt(semDe) == 6) {
+                SemanaRanIni = ObjSema2.getSemana6Ini();
+            } else if (Integer.parseInt(semDe) == 7) {
+                SemanaRanIni = ObjSema2.getSemana7Ini();
+            } else if (Integer.parseInt(semDe) == 8) {
+                SemanaRanIni = ObjSema2.getSemana8Ini();
+            } else if (Integer.parseInt(semDe) == 9) {
+                SemanaRanIni = ObjSema2.getSemana8Ini();
+            } else if (Integer.parseInt(semDe) == 10) {
+                SemanaRanIni = ObjSema2.getSemana10Ini();
+            } else if (Integer.parseInt(semDe) == 11) {
+                SemanaRanIni = ObjSema2.getSemana11Ini();
+            } else if (Integer.parseInt(semDe) == 12) {
+                SemanaRanIni = ObjSema2.getSemana12Ini();
+            } else if (Integer.parseInt(semDe) == 13) {
+                SemanaRanIni = ObjSema2.getSemana13Ini();
+            } else if (Integer.parseInt(semDe) == 14) {
+                SemanaRanIni = ObjSema2.getSemana14Ini();
+            } else if (Integer.parseInt(semDe) == 15) {
+                SemanaRanIni = ObjSema2.getSemana15Ini();
+            } else if (Integer.parseInt(semDe) == 16) {
+                SemanaRanIni = ObjSema2.getSemana16Ini();
+            } else if (Integer.parseInt(semDe) == 17) {
+                SemanaRanIni = ObjSema2.getSemana17Ini();
+            } else if (Integer.parseInt(semDe) == 18) {
+                SemanaRanIni = ObjSema2.getSemana18Ini();
+            } else if (Integer.parseInt(semDe) == 19) {
+                SemanaRanIni = ObjSema2.getSemana19Ini();
+            } else if (Integer.parseInt(semDe) == 20) {
+                SemanaRanIni = ObjSema2.getSemana20Ini();
+            } else if (Integer.parseInt(semDe) == 21) {
+                SemanaRanIni = ObjSema2.getSemana21Ini();
+            } else if (Integer.parseInt(semDe) == 22) {
+                SemanaRanIni = ObjSema2.getSemana22Ini();
+            } else if (Integer.parseInt(semDe) == 23) {
+                SemanaRanIni = ObjSema2.getSemana23Ini();
+            } else if (Integer.parseInt(semDe) == 24) {
+                SemanaRanIni = ObjSema2.getSemana24Ini();
+            } else if (Integer.parseInt(semDe) == 25) {
+                SemanaRanIni = ObjSema2.getSemana25Ini();
+            } else if (Integer.parseInt(semDe) == 26) {
+                SemanaRanIni = ObjSema2.getSemana26Ini();
+            } else if (Integer.parseInt(semDe) == 27) {
+                SemanaRanIni = ObjSema2.getSemana27Ini();
+            } else if (Integer.parseInt(semDe) == 28) {
+                SemanaRanIni = ObjSema2.getSemana28Ini();
+            } else if (Integer.parseInt(semDe) == 29) {
+                SemanaRanIni = ObjSema2.getSemana29Ini();
+            } else if (Integer.parseInt(semDe) == 30) {
+                SemanaRanIni = ObjSema2.getSemana30Ini();
+            } else if (Integer.parseInt(semDe) == 31) {
+                SemanaRanIni = ObjSema2.getSemana31Ini();
+            } else if (Integer.parseInt(semDe) == 32) {
+                SemanaRanIni = ObjSema2.getSemana32Ini();
+            } else if (Integer.parseInt(semDe) == 33) {
+                SemanaRanIni = ObjSema2.getSemana33Ini();
+            } else if (Integer.parseInt(semDe) == 34) {
+                SemanaRanIni = ObjSema2.getSemana34Ini();
+            } else if (Integer.parseInt(semDe) == 35) {
+                SemanaRanIni = ObjSema2.getSemana35Ini();
+            } else if (Integer.parseInt(semDe) == 36) {
+                SemanaRanIni = ObjSema2.getSemana36Ini();
+            } else if (Integer.parseInt(semDe) == 37) {
+                SemanaRanIni = ObjSema2.getSemana37Ini();
+            } else if (Integer.parseInt(semDe) == 38) {
+                SemanaRanIni = ObjSema2.getSemana38Ini();
+            } else if (Integer.parseInt(semDe) == 39) {
+                SemanaRanIni = ObjSema2.getSemana39Ini();
+            } else if (Integer.parseInt(semDe) == 40) {
+                SemanaRanIni = ObjSema2.getSemana40Ini();
+            } else if (Integer.parseInt(semDe) == 41) {
+                SemanaRanIni = ObjSema2.getSemana41Ini();
+            } else if (Integer.parseInt(semDe) == 42) {
+                SemanaRanIni = ObjSema2.getSemana42Ini();
+            } else if (Integer.parseInt(semDe) == 43) {
+                SemanaRanIni = ObjSema2.getSemana43Ini();
+            } else if (Integer.parseInt(semDe) == 44) {
+                SemanaRanIni = ObjSema2.getSemana44Ini();
+            } else if (Integer.parseInt(semDe) == 45) {
+                SemanaRanIni = ObjSema2.getSemana45Ini();
+            } else if (Integer.parseInt(semDe) == 46) {
+                SemanaRanIni = ObjSema2.getSemana46Ini();
+            } else if (Integer.parseInt(semDe) == 47) {
+                SemanaRanIni = ObjSema2.getSemana47Ini();
+            } else if (Integer.parseInt(semDe) == 48) {
+                SemanaRanIni = ObjSema2.getSemana48Ini();
+            } else if (Integer.parseInt(semDe) == 49) {
+                SemanaRanIni = ObjSema2.getSemana49Ini();
+            } else if (Integer.parseInt(semDe) == 50) {
+                SemanaRanIni = ObjSema2.getSemana50Ini();
+            } else if (Integer.parseInt(semDe) == 51) {
+                SemanaRanIni = ObjSema2.getSemana51Ini();
+            } else if (Integer.parseInt(semDe) == 52) {
+                SemanaRanIni = ObjSema2.getSemana52Ini();
+            }
+
+
+            if (Integer.parseInt(semHa) == 1) {
+                SemanaRanFin = ObjSema2.getSemana1Fin();
+            } else if (Integer.parseInt(semHa) == 2) {
+                SemanaRanFin = ObjSema2.getSemana2Fin();
+            } else if (Integer.parseInt(semHa) == 3) {
+                SemanaRanFin = ObjSema2.getSemana3Fin();
+            } else if (Integer.parseInt(semHa) == 4) {
+                SemanaRanFin = ObjSema2.getSemana4Fin();
+            } else if (Integer.parseInt(semHa) == 5) {
+                SemanaRanFin = ObjSema2.getSemana5Fin();
+            } else if (Integer.parseInt(semHa) == 6) {
+                SemanaRanFin = ObjSema2.getSemana6Fin();
+            } else if (Integer.parseInt(semHa) == 7) {
+                SemanaRanFin = ObjSema2.getSemana7Fin();
+            } else if (Integer.parseInt(semHa) == 8) {
+                SemanaRanFin = ObjSema2.getSemana8Fin();
+            } else if (Integer.parseInt(semHa) == 9) {
+                SemanaRanFin = ObjSema2.getSemana8Fin();
+            } else if (Integer.parseInt(semHa) == 10) {
+                SemanaRanFin = ObjSema2.getSemana10Fin();
+            } else if (Integer.parseInt(semHa) == 11) {
+                SemanaRanFin = ObjSema2.getSemana11Fin();
+            } else if (Integer.parseInt(semHa) == 12) {
+                SemanaRanFin = ObjSema2.getSemana12Fin();
+            } else if (Integer.parseInt(semHa) == 13) {
+                SemanaRanFin = ObjSema2.getSemana13Fin();
+            } else if (Integer.parseInt(semHa) == 14) {
+                SemanaRanFin = ObjSema2.getSemana14Fin();
+            } else if (Integer.parseInt(semHa) == 15) {
+                SemanaRanFin = ObjSema2.getSemana15Fin();
+            } else if (Integer.parseInt(semHa) == 16) {
+                SemanaRanFin = ObjSema2.getSemana16Fin();
+            } else if (Integer.parseInt(semHa) == 17) {
+                SemanaRanFin = ObjSema2.getSemana17Fin();
+            } else if (Integer.parseInt(semHa) == 18) {
+                SemanaRanFin = ObjSema2.getSemana18Fin();
+            } else if (Integer.parseInt(semHa) == 19) {
+                SemanaRanFin = ObjSema2.getSemana19Fin();
+            } else if (Integer.parseInt(semHa) == 20) {
+                SemanaRanFin = ObjSema2.getSemana20Fin();
+            } else if (Integer.parseInt(semHa) == 21) {
+                SemanaRanFin = ObjSema2.getSemana21Fin();
+            } else if (Integer.parseInt(semHa) == 22) {
+                SemanaRanFin = ObjSema2.getSemana22Fin();
+            } else if (Integer.parseInt(semHa) == 23) {
+                SemanaRanFin = ObjSema2.getSemana23Fin();
+            } else if (Integer.parseInt(semHa) == 24) {
+                SemanaRanFin = ObjSema2.getSemana24Fin();
+            } else if (Integer.parseInt(semHa) == 25) {
+                SemanaRanFin = ObjSema2.getSemana25Fin();
+            } else if (Integer.parseInt(semHa) == 26) {
+                SemanaRanFin = ObjSema2.getSemana26Fin();
+            } else if (Integer.parseInt(semHa) == 27) {
+                SemanaRanFin = ObjSema2.getSemana27Fin();
+            } else if (Integer.parseInt(semHa) == 28) {
+                SemanaRanFin = ObjSema2.getSemana28Fin();
+            } else if (Integer.parseInt(semHa) == 29) {
+                SemanaRanFin = ObjSema2.getSemana29Fin();
+            } else if (Integer.parseInt(semHa) == 30) {
+                SemanaRanFin = ObjSema2.getSemana30Fin();
+            } else if (Integer.parseInt(semHa) == 31) {
+                SemanaRanFin = ObjSema2.getSemana31Fin();
+            } else if (Integer.parseInt(semHa) == 32) {
+                SemanaRanFin = ObjSema2.getSemana32Fin();
+            } else if (Integer.parseInt(semHa) == 33) {
+                SemanaRanFin = ObjSema2.getSemana33Fin();
+            } else if (Integer.parseInt(semHa) == 34) {
+                SemanaRanFin = ObjSema2.getSemana34Fin();
+            } else if (Integer.parseInt(semHa) == 35) {
+                SemanaRanFin = ObjSema2.getSemana35Fin();
+            } else if (Integer.parseInt(semHa) == 36) {
+                SemanaRanFin = ObjSema2.getSemana36Fin();
+            } else if (Integer.parseInt(semHa) == 37) {
+                SemanaRanFin = ObjSema2.getSemana37Fin();
+            } else if (Integer.parseInt(semHa) == 38) {
+                SemanaRanFin = ObjSema2.getSemana38Fin();
+            } else if (Integer.parseInt(semHa) == 39) {
+                SemanaRanFin = ObjSema2.getSemana39Fin();
+            } else if (Integer.parseInt(semHa) == 40) {
+                SemanaRanFin = ObjSema2.getSemana40Fin();
+            } else if (Integer.parseInt(semHa) == 41) {
+                SemanaRanFin = ObjSema2.getSemana41Fin();
+            } else if (Integer.parseInt(semHa) == 42) {
+                SemanaRanFin = ObjSema2.getSemana42Fin();
+            } else if (Integer.parseInt(semHa) == 43) {
+                SemanaRanFin = ObjSema2.getSemana43Fin();
+            } else if (Integer.parseInt(semHa) == 44) {
+                SemanaRanFin = ObjSema2.getSemana44Fin();
+            } else if (Integer.parseInt(semHa) == 45) {
+                SemanaRanFin = ObjSema2.getSemana45Fin();
+            } else if (Integer.parseInt(semHa) == 46) {
+                SemanaRanFin = ObjSema2.getSemana46Fin();
+            } else if (Integer.parseInt(semHa) == 47) {
+                SemanaRanFin = ObjSema2.getSemana47Fin();
+            } else if (Integer.parseInt(semHa) == 48) {
+                SemanaRanFin = ObjSema2.getSemana48Fin();
+            } else if (Integer.parseInt(semHa) == 49) {
+                SemanaRanFin = ObjSema2.getSemana49Fin();
+            } else if (Integer.parseInt(semHa) == 50) {
+                SemanaRanFin = ObjSema2.getSemana50Fin();
+            } else if (Integer.parseInt(semHa) == 51) {
+                SemanaRanFin = ObjSema2.getSemana51Fin();
+            } else if (Integer.parseInt(semHa) == 52) {
+                SemanaRanFin = ObjSema2.getSemana52Fin();
+            }
+
+        }
+
+        else if (Integer.parseInt(año) == 2017) {
+
+            CalcularMesDB ObjMes = new CalcularMesDB();
+
+            if (Integer.parseInt(MesSel) == 1) {
+                MesRanIni = ObjMes.getEneroIni();
+                MesRanFin = ObjMes.getEneroFin();
+            }
+            else if (Integer.parseInt(MesSel) == 2){
+                MesRanIni = ObjMes.getFebreroIni();
+                MesRanFin = ObjMes.getFebreroFin();
+            }
+            else if (Integer.parseInt(MesSel) == 3){
+                MesRanIni = ObjMes.getMarzoIni();
+                MesRanFin = ObjMes.getMArzoFin();
+            }
+            else if (Integer.parseInt(MesSel) == 4){
+                MesRanIni = ObjMes.getAbrilIni();
+                MesRanFin = ObjMes.getAbrilFin();
+            }
+            else if (Integer.parseInt(MesSel) == 5){
+                MesRanIni = ObjMes.getMayoIni();
+                MesRanFin = ObjMes.getMayoFin();
+            }
+            else if (Integer.parseInt(MesSel) == 6){
+                MesRanIni = ObjMes.getJunioIni();
+                MesRanFin = ObjMes.getJunioFin();
+            }
+            else if (Integer.parseInt(MesSel) == 7){
+                MesRanIni = ObjMes.getJulioIni();
+                MesRanFin = ObjMes.getJulioFin();
+            }
+            else if (Integer.parseInt(MesSel) == 8){
+                MesRanIni = ObjMes.getAgostoIni();
+                MesRanFin = ObjMes.getAgostoFin();
+            }
+            else if (Integer.parseInt(MesSel) == 9){
+                MesRanIni = ObjMes.getSeptiembreIni();
+                MesRanFin = ObjMes.getSeptiembreFin();
+            }
+            else if (Integer.parseInt(MesSel) == 10){
+                MesRanIni = ObjMes.getOctubreIni();
+                MesRanFin = ObjMes.getOctubreFin();
+            }
+            else if (Integer.parseInt(MesSel) == 11){
+                MesRanIni = ObjMes.getNoviembreIni();
+                MesRanFin = ObjMes.getNoviembreFin();
+            }
+            else if (Integer.parseInt(MesSel) == 12){
+                MesRanIni = ObjMes.getDiciembreIni();
+                MesRanFin = ObjMes.getDiciembreFin();
+            }
+
+            CalcularSemanaDB ObjSema2 = new CalcularSemanaDB();
+
+            if (Integer.parseInt(semDe) == 1) {
+                SemanaRanIni = ObjSema2.getSemana1Ini();
+            } else if (Integer.parseInt(semDe) == 2) {
+                SemanaRanIni = ObjSema2.getSemana2Ini();
+            } else if (Integer.parseInt(semDe) == 3) {
+                SemanaRanIni = ObjSema2.getSemana3Ini();
+            } else if (Integer.parseInt(semDe) == 4) {
+                SemanaRanIni = ObjSema2.getSemana4Ini();
+            } else if (Integer.parseInt(semDe) == 5) {
+                SemanaRanIni = ObjSema2.getSemana5Ini();
+            } else if (Integer.parseInt(semDe) == 6) {
+                SemanaRanIni = ObjSema2.getSemana6Ini();
+            } else if (Integer.parseInt(semDe) == 7) {
+                SemanaRanIni = ObjSema2.getSemana7Ini();
+            } else if (Integer.parseInt(semDe) == 8) {
+                SemanaRanIni = ObjSema2.getSemana8Ini();
+            } else if (Integer.parseInt(semDe) == 9) {
+                SemanaRanIni = ObjSema2.getSemana8Ini();
+            } else if (Integer.parseInt(semDe) == 10) {
+                SemanaRanIni = ObjSema2.getSemana10Ini();
+            } else if (Integer.parseInt(semDe) == 11) {
+                SemanaRanIni = ObjSema2.getSemana11Ini();
+            } else if (Integer.parseInt(semDe) == 12) {
+                SemanaRanIni = ObjSema2.getSemana12Ini();
+            } else if (Integer.parseInt(semDe) == 13) {
+                SemanaRanIni = ObjSema2.getSemana13Ini();
+            } else if (Integer.parseInt(semDe) == 14) {
+                SemanaRanIni = ObjSema2.getSemana14Ini();
+            } else if (Integer.parseInt(semDe) == 15) {
+                SemanaRanIni = ObjSema2.getSemana15Ini();
+            } else if (Integer.parseInt(semDe) == 16) {
+                SemanaRanIni = ObjSema2.getSemana16Ini();
+            } else if (Integer.parseInt(semDe) == 17) {
+                SemanaRanIni = ObjSema2.getSemana17Ini();
+            } else if (Integer.parseInt(semDe) == 18) {
+                SemanaRanIni = ObjSema2.getSemana18Ini();
+            } else if (Integer.parseInt(semDe) == 19) {
+                SemanaRanIni = ObjSema2.getSemana19Ini();
+            } else if (Integer.parseInt(semDe) == 20) {
+                SemanaRanIni = ObjSema2.getSemana20Ini();
+            } else if (Integer.parseInt(semDe) == 21) {
+                SemanaRanIni = ObjSema2.getSemana21Ini();
+            } else if (Integer.parseInt(semDe) == 22) {
+                SemanaRanIni = ObjSema2.getSemana22Ini();
+            } else if (Integer.parseInt(semDe) == 23) {
+                SemanaRanIni = ObjSema2.getSemana23Ini();
+            } else if (Integer.parseInt(semDe) == 24) {
+                SemanaRanIni = ObjSema2.getSemana24Ini();
+            } else if (Integer.parseInt(semDe) == 25) {
+                SemanaRanIni = ObjSema2.getSemana25Ini();
+            } else if (Integer.parseInt(semDe) == 26) {
+                SemanaRanIni = ObjSema2.getSemana26Ini();
+            } else if (Integer.parseInt(semDe) == 27) {
+                SemanaRanIni = ObjSema2.getSemana27Ini();
+            } else if (Integer.parseInt(semDe) == 28) {
+                SemanaRanIni = ObjSema2.getSemana28Ini();
+            } else if (Integer.parseInt(semDe) == 29) {
+                SemanaRanIni = ObjSema2.getSemana29Ini();
+            } else if (Integer.parseInt(semDe) == 30) {
+                SemanaRanIni = ObjSema2.getSemana30Ini();
+            } else if (Integer.parseInt(semDe) == 31) {
+                SemanaRanIni = ObjSema2.getSemana31Ini();
+            } else if (Integer.parseInt(semDe) == 32) {
+                SemanaRanIni = ObjSema2.getSemana32Ini();
+            } else if (Integer.parseInt(semDe) == 33) {
+                SemanaRanIni = ObjSema2.getSemana33Ini();
+            } else if (Integer.parseInt(semDe) == 34) {
+                SemanaRanIni = ObjSema2.getSemana34Ini();
+            } else if (Integer.parseInt(semDe) == 35) {
+                SemanaRanIni = ObjSema2.getSemana35Ini();
+            } else if (Integer.parseInt(semDe) == 36) {
+                SemanaRanIni = ObjSema2.getSemana36Ini();
+            } else if (Integer.parseInt(semDe) == 37) {
+                SemanaRanIni = ObjSema2.getSemana37Ini();
+            } else if (Integer.parseInt(semDe) == 38) {
+                SemanaRanIni = ObjSema2.getSemana38Ini();
+            } else if (Integer.parseInt(semDe) == 39) {
+                SemanaRanIni = ObjSema2.getSemana39Ini();
+            } else if (Integer.parseInt(semDe) == 40) {
+                SemanaRanIni = ObjSema2.getSemana40Ini();
+            } else if (Integer.parseInt(semDe) == 41) {
+                SemanaRanIni = ObjSema2.getSemana41Ini();
+            } else if (Integer.parseInt(semDe) == 42) {
+                SemanaRanIni = ObjSema2.getSemana42Ini();
+            } else if (Integer.parseInt(semDe) == 43) {
+                SemanaRanIni = ObjSema2.getSemana43Ini();
+            } else if (Integer.parseInt(semDe) == 44) {
+                SemanaRanIni = ObjSema2.getSemana44Ini();
+            } else if (Integer.parseInt(semDe) == 45) {
+                SemanaRanIni = ObjSema2.getSemana45Ini();
+            } else if (Integer.parseInt(semDe) == 46) {
+                SemanaRanIni = ObjSema2.getSemana46Ini();
+            } else if (Integer.parseInt(semDe) == 47) {
+                SemanaRanIni = ObjSema2.getSemana47Ini();
+            } else if (Integer.parseInt(semDe) == 48) {
+                SemanaRanIni = ObjSema2.getSemana48Ini();
+            } else if (Integer.parseInt(semDe) == 49) {
+                SemanaRanIni = ObjSema2.getSemana49Ini();
+            } else if (Integer.parseInt(semDe) == 50) {
+                SemanaRanIni = ObjSema2.getSemana50Ini();
+            } else if (Integer.parseInt(semDe) == 51) {
+                SemanaRanIni = ObjSema2.getSemana51Ini();
+            } else if (Integer.parseInt(semDe) == 52) {
+                SemanaRanIni = ObjSema2.getSemana52Ini();
+            }
+
+
+            if (Integer.parseInt(semHa) == 1) {
+                SemanaRanFin = ObjSema2.getSemana1Fin();
+            } else if (Integer.parseInt(semHa) == 2) {
+                SemanaRanFin = ObjSema2.getSemana2Fin();
+            } else if (Integer.parseInt(semHa) == 3) {
+                SemanaRanFin = ObjSema2.getSemana3Fin();
+            } else if (Integer.parseInt(semHa) == 4) {
+                SemanaRanFin = ObjSema2.getSemana4Fin();
+            } else if (Integer.parseInt(semHa) == 5) {
+                SemanaRanFin = ObjSema2.getSemana5Fin();
+            } else if (Integer.parseInt(semHa) == 6) {
+                SemanaRanFin = ObjSema2.getSemana6Fin();
+            } else if (Integer.parseInt(semHa) == 7) {
+                SemanaRanFin = ObjSema2.getSemana7Fin();
+            } else if (Integer.parseInt(semHa) == 8) {
+                SemanaRanFin = ObjSema2.getSemana8Fin();
+            } else if (Integer.parseInt(semHa) == 9) {
+                SemanaRanFin = ObjSema2.getSemana8Fin();
+            } else if (Integer.parseInt(semHa) == 10) {
+                SemanaRanFin = ObjSema2.getSemana10Fin();
+            } else if (Integer.parseInt(semHa) == 11) {
+                SemanaRanFin = ObjSema2.getSemana11Fin();
+            } else if (Integer.parseInt(semHa) == 12) {
+                SemanaRanFin = ObjSema2.getSemana12Fin();
+            } else if (Integer.parseInt(semHa) == 13) {
+                SemanaRanFin = ObjSema2.getSemana13Fin();
+            } else if (Integer.parseInt(semHa) == 14) {
+                SemanaRanFin = ObjSema2.getSemana14Fin();
+            } else if (Integer.parseInt(semHa) == 15) {
+                SemanaRanFin = ObjSema2.getSemana15Fin();
+            } else if (Integer.parseInt(semHa) == 16) {
+                SemanaRanFin = ObjSema2.getSemana16Fin();
+            } else if (Integer.parseInt(semHa) == 17) {
+                SemanaRanFin = ObjSema2.getSemana17Fin();
+            } else if (Integer.parseInt(semHa) == 18) {
+                SemanaRanFin = ObjSema2.getSemana18Fin();
+            } else if (Integer.parseInt(semHa) == 19) {
+                SemanaRanFin = ObjSema2.getSemana19Fin();
+            } else if (Integer.parseInt(semHa) == 20) {
+                SemanaRanFin = ObjSema2.getSemana20Fin();
+            } else if (Integer.parseInt(semHa) == 21) {
+                SemanaRanFin = ObjSema2.getSemana21Fin();
+            } else if (Integer.parseInt(semHa) == 22) {
+                SemanaRanFin = ObjSema2.getSemana22Fin();
+            } else if (Integer.parseInt(semHa) == 23) {
+                SemanaRanFin = ObjSema2.getSemana23Fin();
+            } else if (Integer.parseInt(semHa) == 24) {
+                SemanaRanFin = ObjSema2.getSemana24Fin();
+            } else if (Integer.parseInt(semHa) == 25) {
+                SemanaRanFin = ObjSema2.getSemana25Fin();
+            } else if (Integer.parseInt(semHa) == 26) {
+                SemanaRanFin = ObjSema2.getSemana26Fin();
+            } else if (Integer.parseInt(semHa) == 27) {
+                SemanaRanFin = ObjSema2.getSemana27Fin();
+            } else if (Integer.parseInt(semHa) == 28) {
+                SemanaRanFin = ObjSema2.getSemana28Fin();
+            } else if (Integer.parseInt(semHa) == 29) {
+                SemanaRanFin = ObjSema2.getSemana29Fin();
+            } else if (Integer.parseInt(semHa) == 30) {
+                SemanaRanFin = ObjSema2.getSemana30Fin();
+            } else if (Integer.parseInt(semHa) == 31) {
+                SemanaRanFin = ObjSema2.getSemana31Fin();
+            } else if (Integer.parseInt(semHa) == 32) {
+                SemanaRanFin = ObjSema2.getSemana32Fin();
+            } else if (Integer.parseInt(semHa) == 33) {
+                SemanaRanFin = ObjSema2.getSemana33Fin();
+            } else if (Integer.parseInt(semHa) == 34) {
+                SemanaRanFin = ObjSema2.getSemana34Fin();
+            } else if (Integer.parseInt(semHa) == 35) {
+                SemanaRanFin = ObjSema2.getSemana35Fin();
+            } else if (Integer.parseInt(semHa) == 36) {
+                SemanaRanFin = ObjSema2.getSemana36Fin();
+            } else if (Integer.parseInt(semHa) == 37) {
+                SemanaRanFin = ObjSema2.getSemana37Fin();
+            } else if (Integer.parseInt(semHa) == 38) {
+                SemanaRanFin = ObjSema2.getSemana38Fin();
+            } else if (Integer.parseInt(semHa) == 39) {
+                SemanaRanFin = ObjSema2.getSemana39Fin();
+            } else if (Integer.parseInt(semHa) == 40) {
+                SemanaRanFin = ObjSema2.getSemana40Fin();
+            } else if (Integer.parseInt(semHa) == 41) {
+                SemanaRanFin = ObjSema2.getSemana41Fin();
+            } else if (Integer.parseInt(semHa) == 42) {
+                SemanaRanFin = ObjSema2.getSemana42Fin();
+            } else if (Integer.parseInt(semHa) == 43) {
+                SemanaRanFin = ObjSema2.getSemana43Fin();
+            } else if (Integer.parseInt(semHa) == 44) {
+                SemanaRanFin = ObjSema2.getSemana44Fin();
+            } else if (Integer.parseInt(semHa) == 45) {
+                SemanaRanFin = ObjSema2.getSemana45Fin();
+            } else if (Integer.parseInt(semHa) == 46) {
+                SemanaRanFin = ObjSema2.getSemana46Fin();
+            } else if (Integer.parseInt(semHa) == 47) {
+                SemanaRanFin = ObjSema2.getSemana47Fin();
+            } else if (Integer.parseInt(semHa) == 48) {
+                SemanaRanFin = ObjSema2.getSemana48Fin();
+            } else if (Integer.parseInt(semHa) == 49) {
+                SemanaRanFin = ObjSema2.getSemana49Fin();
+            } else if (Integer.parseInt(semHa) == 50) {
+                SemanaRanFin = ObjSema2.getSemana50Fin();
+            } else if (Integer.parseInt(semHa) == 51) {
+                SemanaRanFin = ObjSema2.getSemana51Fin();
+            } else if (Integer.parseInt(semHa) == 52) {
+                SemanaRanFin = ObjSema2.getSemana52Fin();
+            }
+
         }
 
 
-        if (Integer.parseInt(semHa) == 1){
-            SemanaRanFin = ObjSema2.getSemana1Fin();
-        } else if (Integer.parseInt(semHa) == 2){
-            SemanaRanFin = ObjSema2.getSemana2Fin();
-        } else if (Integer.parseInt(semHa) == 3){
-            SemanaRanFin = ObjSema2.getSemana3Fin();
-        } else if (Integer.parseInt(semHa) == 4){
-            SemanaRanFin = ObjSema2.getSemana4Fin();
-        } else if (Integer.parseInt(semHa) == 5){
-            SemanaRanFin = ObjSema2.getSemana5Fin();
-        } else if (Integer.parseInt(semHa) == 6){
-            SemanaRanFin = ObjSema2.getSemana6Fin();
-        } else if (Integer.parseInt(semHa) == 7){
-            SemanaRanFin = ObjSema2.getSemana7Fin();
-        } else if (Integer.parseInt(semHa) == 8){
-            SemanaRanFin = ObjSema2.getSemana8Fin();
-        }  else if (Integer.parseInt(semHa) == 9){
-            SemanaRanFin = ObjSema2.getSemana8Fin();
-        } else if (Integer.parseInt(semHa) == 10){
-            SemanaRanFin = ObjSema2.getSemana10Fin();
-        }   else if (Integer.parseInt(semHa) == 11){
-            SemanaRanFin = ObjSema2.getSemana11Fin();
-        }  else if (Integer.parseInt(semHa) == 12){
-            SemanaRanFin = ObjSema2.getSemana12Fin();
-        } else if (Integer.parseInt(semHa) == 13){
-            SemanaRanFin = ObjSema2.getSemana13Fin();
-        } else if (Integer.parseInt(semHa) == 14){
-            SemanaRanFin = ObjSema2.getSemana14Fin();
-        } else if (Integer.parseInt(semHa) == 15){
-            SemanaRanFin = ObjSema2.getSemana15Fin();
-        } else if (Integer.parseInt(semHa) == 16){
-            SemanaRanFin = ObjSema2.getSemana16Fin();
-        } else if (Integer.parseInt(semHa) == 17){
-            SemanaRanFin = ObjSema2.getSemana17Fin();
-        } else if (Integer.parseInt(semHa) == 18){
-            SemanaRanFin = ObjSema2.getSemana18Fin();
-        } else if (Integer.parseInt(semHa) == 19){
-            SemanaRanFin = ObjSema2.getSemana19Fin();
-        } else if (Integer.parseInt(semHa) == 20){
-            SemanaRanFin = ObjSema2.getSemana20Fin();
-        } else if (Integer.parseInt(semHa) == 21){
-            SemanaRanFin = ObjSema2.getSemana21Fin();
-        } else if (Integer.parseInt(semHa) == 22){
-            SemanaRanFin = ObjSema2.getSemana22Fin();
-        } else if (Integer.parseInt(semHa) == 23){
-            SemanaRanFin = ObjSema2.getSemana23Fin();
-        } else if (Integer.parseInt(semHa) == 24){
-            SemanaRanFin = ObjSema2.getSemana24Fin();
-        } else if (Integer.parseInt(semHa) == 25){
-            SemanaRanFin = ObjSema2.getSemana25Fin();
-        } else if (Integer.parseInt(semHa) == 26){
-            SemanaRanFin = ObjSema2.getSemana26Fin();
-        } else if (Integer.parseInt(semHa) == 27){
-            SemanaRanFin = ObjSema2.getSemana27Fin();
-        } else if (Integer.parseInt(semHa) == 28){
-            SemanaRanFin = ObjSema2.getSemana28Fin();
-        } else if (Integer.parseInt(semHa) == 29){
-            SemanaRanFin = ObjSema2.getSemana29Fin();
-        } else if (Integer.parseInt(semHa) == 30){
-            SemanaRanFin = ObjSema2.getSemana30Fin();
-        } else if (Integer.parseInt(semHa) == 31){
-            SemanaRanFin = ObjSema2.getSemana31Fin();
-        } else if (Integer.parseInt(semHa) == 32){
-            SemanaRanFin = ObjSema2.getSemana32Fin();
-        } else if (Integer.parseInt(semHa) == 33){
-            SemanaRanFin = ObjSema2.getSemana33Fin();
-        } else if (Integer.parseInt(semHa) == 34){
-            SemanaRanFin = ObjSema2.getSemana34Fin();
-        } else if (Integer.parseInt(semHa) == 35){
-            SemanaRanFin = ObjSema2.getSemana35Fin();
-        } else if (Integer.parseInt(semHa) == 36){
-            SemanaRanFin = ObjSema2.getSemana36Fin();
-        } else if (Integer.parseInt(semHa) == 37){
-            SemanaRanFin = ObjSema2.getSemana37Fin();
-        } else if (Integer.parseInt(semHa) == 38){
-            SemanaRanFin = ObjSema2.getSemana38Fin();
-        } else if (Integer.parseInt(semHa) == 39){
-            SemanaRanFin = ObjSema2.getSemana39Fin();
-        } else if (Integer.parseInt(semHa) == 40){
-            SemanaRanFin = ObjSema2.getSemana40Fin();
-        } else if (Integer.parseInt(semHa) == 41){
-            SemanaRanFin = ObjSema2.getSemana41Fin();
-        } else if (Integer.parseInt(semHa) == 42){
-            SemanaRanFin = ObjSema2.getSemana42Fin();
-        } else if (Integer.parseInt(semHa) == 43){
-            SemanaRanFin = ObjSema2.getSemana43Fin();
-        } else if (Integer.parseInt(semHa) == 44){
-            SemanaRanFin = ObjSema2.getSemana44Fin();
-        } else if (Integer.parseInt(semHa) == 45){
-            SemanaRanFin = ObjSema2.getSemana45Fin();
-        } else if (Integer.parseInt(semHa) == 46){
-            SemanaRanFin = ObjSema2.getSemana46Fin();
-        } else if (Integer.parseInt(semHa) == 47){
-            SemanaRanFin = ObjSema2.getSemana47Fin();
-        } else if (Integer.parseInt(semHa) == 48){
-            SemanaRanFin = ObjSema2.getSemana48Fin();
-        } else if (Integer.parseInt(semHa) == 49){
-            SemanaRanFin = ObjSema2.getSemana49Fin();
-        } else if (Integer.parseInt(semHa) == 50){
-            SemanaRanFin = ObjSema2.getSemana50Fin();
-        } else if (Integer.parseInt(semHa) == 51){
-            SemanaRanFin = ObjSema2.getSemana51Fin();
-        } else if (Integer.parseInt(semHa) == 52){
-            SemanaRanFin = ObjSema2.getSemana52Fin();
-        }
 
     }// public void RangoFechas ()
     
@@ -862,7 +1142,7 @@ public class UtilidadAvan {
 
             //META("SELECT DISTINCT BHU FROM tblHideUtilizationCalc WHERE Planta = '"+plan+"' AND DescrOem = '"+arm+"' AND DescrPrograma = '"+pro+" AND Año = '"+año+"' ");
             a = "1";
-            CalculaYTD("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) HUtilizationVar FROM( SELECT semana, Oem, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Oem = '"+oem+"' AND Fecha BETWEEN '2016-01-03' AND '"+YEAR+"-"+MES+"-"+DIAMES+"'  GROUP BY Semana, Oem, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
+            CalculaYTD("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) HUtilizationVar FROM( SELECT semana, Oem, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Oem = '"+oem+"' AND Fecha BETWEEN '"+YEAR+"-01-02' AND '"+YEAR+"-"+MES+"-"+DIAMES+"'  GROUP BY Semana, Oem, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
             CalculaMTD("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) HUtilizationVar FROM( SELECT semana, Oem, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Oem = '"+oem+"' AND Fecha BETWEEN '"+MesIni+"' AND '"+MesFin+"' GROUP BY Semana, Oem, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
             CalculaWTD("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) HUtilizationVar FROM( SELECT semana, Oem, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Oem = '"+oem+"' AND Fecha BETWEEN '"+SemanaIni+"' AND '"+SemanaFin+"'  GROUP BY Semana, Oem, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
             CalcularToday("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) HUtilizationVar FROM( SELECT semana, Oem, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Oem = '"+oem+"' AND Fecha = '"+YEAR+"-"+MES+"-"+DIAMES+"'  GROUP BY Semana, Oem, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
@@ -875,7 +1155,7 @@ public class UtilidadAvan {
             META("SELECT DISTINCT BHU as BHU FROM tblHideUtilizationJDE WHERE Planta = '"+plan+"' AND Oem = '"+arm+"' AND Programa = '" + pro + "'  AND Año = '"+año+"' ");
             a = "2";
 
-            CalculaYTD("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) HUtilizationVar FROM ( SELECT semana, Oem, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Oem = '"+oem+"' AND Programa = '"+pro+"' AND fecha BETWEEN '2016-01-03' AND '"+YEAR+"-"+MES+"-"+DIAMES+"'  GROUP BY Semana, Oem, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
+            CalculaYTD("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) HUtilizationVar FROM ( SELECT semana, Oem, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Oem = '"+oem+"' AND Programa = '"+pro+"' AND fecha BETWEEN '"+YEAR+"-01-02' AND '"+YEAR+"-"+MES+"-"+DIAMES+"'  GROUP BY Semana, Oem, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
             CalculaMTD("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) HUtilizationVar FROM ( SELECT semana, Oem, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Oem = '"+oem+"' AND Programa = '"+pro+"' AND Fecha BETWEEN '"+MesIni+"' AND '"+MesFin+"' GROUP  BY Semana, Oem, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
             CalculaWTD("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) HUtilizationVar FROM ( SELECT semana, Oem, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Oem = '"+oem+"' AND Programa = '"+pro+"' AND Fecha BETWEEN '"+SemanaIni+"' AND '"+SemanaFin+"' GROUP BY Semana, Oem, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1 " );
             CalcularToday("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) HUtilizationVar FROM ( SELECT semana, Oem, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Oem = '"+oem+"' AND Programa = '"+pro+"' AND Fecha = '"+YEAR+"-"+MES+"-"+DIAMES+"' GROUP BY Semana, Oem, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
@@ -888,7 +1168,7 @@ public class UtilidadAvan {
             META("SELECT DISTINCT BHU as BHU FROM tblHideUtilizationJDE WHERE Planta = '"+plan+"' AND Oem = '"+arm+"' AND Construccion = '"+cons+"' AND Año = '"+año+"'  ");
 
             a = "3";
-            CalculaYTD("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) HUtilizationVar FROM ( SELECT semana, Oem, Construccion, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Oem = '"+oem+"'  AND Construccion = '"+cons+"'  AND Fecha BETWEEN '2016-01-03' AND '"+YEAR+"-"+MES+"-"+DIAMES+"' GROUP BY Semana, Oem, Construccion, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
+            CalculaYTD("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) HUtilizationVar FROM ( SELECT semana, Oem, Construccion, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Oem = '"+oem+"'  AND Construccion = '"+cons+"'  AND Fecha BETWEEN '"+YEAR+"-01-02' AND '"+YEAR+"-"+MES+"-"+DIAMES+"' GROUP BY Semana, Oem, Construccion, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
             CalculaMTD("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) HUtilizationVar FROM ( SELECT semana, Oem, Construccion, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Oem = '"+oem+"'  AND Construccion = '"+cons+"'  AND Fecha BETWEEN '"+MesIni+"' AND '"+MesFin+"' GROUP BY Semana, Oem, Construccion, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
             CalculaWTD("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) HUtilizationVar FROM ( SELECT semana, Oem, Construccion, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Oem = '"+oem+"'  AND Construccion = '"+cons+"'  AND Fecha BETWEEN '"+SemanaIni+"' AND '"+SemanaFin+"' GROUP BY Semana, Oem, Construccion, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
             CalcularToday("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) HUtilizationVar FROM ( SELECT semana, Oem, Construccion, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Oem = '"+oem+"'  AND Construccion = '"+cons+"'  AND Fecha = '"+YEAR+"-"+MES+"-"+DIAMES+"' GROUP BY Semana, Oem, Construccion, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
@@ -901,7 +1181,7 @@ public class UtilidadAvan {
             META("SELECT DISTINCT BHU as BHU FROM tblHideUtilizationJDE WHERE Planta = '" + plan + "' AND Oem = '" + arm + "' AND Construccion = '"+cons+"' AND Programa = '" + pro + "'  AND Año = '" + año + "' ");
 
             a = "4";
-            CalculaYTD("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) [HUtilizationVar] FROM ( SELECT semana, Oem, Construccion, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Oem = '"+oem+"'  AND Construccion = '"+cons+"'  AND Programa = '"+pro+"' AND Fecha BETWEEN '2016-01-03' AND '"+YEAR+"-"+MES+"-"+DIAMES+"' GROUP BY Semana, Oem, Construccion, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
+            CalculaYTD("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) [HUtilizationVar] FROM ( SELECT semana, Oem, Construccion, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Oem = '"+oem+"'  AND Construccion = '"+cons+"'  AND Programa = '"+pro+"' AND Fecha BETWEEN '"+YEAR+"-01-02' AND '"+YEAR+"-"+MES+"-"+DIAMES+"' GROUP BY Semana, Oem, Construccion, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
             CalculaMTD("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) [HUtilizationVar] FROM ( SELECT semana, Oem, Construccion, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Oem = '"+oem+"'  AND Construccion = '"+cons+"'  AND Programa = '"+pro+"' AND Fecha BETWEEN '"+MesIni+"' AND '"+MesFin+"' GROUP BY Semana, Oem, Construccion, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
             CalculaWTD("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) [HUtilizationVar] FROM ( SELECT semana, Oem, Construccion, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Oem = '"+oem+"'  AND Construccion = '"+cons+"'  AND Programa = '"+pro+"' AND Fecha BETWEEN '"+SemanaIni+"' AND '"+SemanaFin+"' GROUP BY Semana, Oem, Construccion, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
             CalcularToday("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) [HUtilizationVar] FROM ( SELECT semana, Oem, Construccion, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationJDE WHERE Planta = '"+Planta+"' AND Oem = '"+oem+"'  AND Construccion = '"+cons+"'  AND Programa = '"+pro+"' AND Fecha = '"+YEAR+"-"+MES+"-"+DIAMES+"' GROUP BY Semana, Oem, Construccion, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
@@ -914,7 +1194,7 @@ public class UtilidadAvan {
             META("SELECT DISTINCT BHU as BHU FROM tblHideUtilizationCalc WHERE Planta = '"+plan+"' AND Oem = '"+arm+"' AND Construccion = '"+cons+"' ' AND Programa = '" + pro + "'  AND PT = '"+pts+"' AND Año = '"+año+"' ");
             a = "5";
 
-            CalculaYTD("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) [HUtilizationVar] FROM ( SELECT semana, Oem, Construccion, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationCalc WHERE Planta = '"+Planta+"' AND DescrOem = '"+oem+"'  AND DescrConstruccion = '"+cons+"'  AND DescrPrograma = '"+pro+"' AND PT = '"+pts+"' AND Fecha BETWEEN '2016-01-03' AND '"+YEAR+"-"+MES+"-"+DIAMES+"' GROUP BY Semana, Oem, Construccion, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
+            CalculaYTD("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) [HUtilizationVar] FROM ( SELECT semana, Oem, Construccion, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationCalc WHERE Planta = '"+Planta+"' AND DescrOem = '"+oem+"'  AND DescrConstruccion = '"+cons+"'  AND DescrPrograma = '"+pro+"' AND PT = '"+pts+"' AND Fecha BETWEEN '"+YEAR+"-01-02' AND '"+YEAR+"-"+MES+"-"+DIAMES+"' GROUP BY Semana, Oem, Construccion, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
             CalculaMTD("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) [HUtilizationVar] FROM ( SELECT semana, Oem, Construccion, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationCalc WHERE  WHERE Planta = '"+Planta+"' AND DescrOem = '"+oem+"' AND DescrConstruccion = '"+cons+"'  AND DescrPrograma = '"+pro+"' AND PT = '"+pts+"' AND Fecha BETWEEN '"+MesIni+"' AND '"+MesFin+"' GROUP BY Semana, Oem, Construccion, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
             CalculaWTD("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) [HUtilizationVar] FROM ( SELECT semana, Oem, Construccion, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationCalc WHERE  WHERE Planta = '"+Planta+"' AND DescrOem = '"+oem+"' AND DescrConstruccion = '"+cons+"'  AND DescrPrograma = '"+pro+"'  AND PT = '"+pts+"' AND Fecha BETWEEN '"+SemanaIni+"' AND '"+SemanaFin+"' GROUP BY Semana, Oem, Construccion, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");
             CalcularToday("SELECT SUM(cueros) Cueros, SUM(ft2) FT2, SUM(netft2) NetFT2, SUM([Bud Footage]) BFootage, SUM([H. utilization $ Var]) [HUtilizationVar] FROM ( SELECT semana, Oem, Construccion, Programa, SUM(Cueros) AS Cueros, SUM(ft2) AS Ft2,  CAST(SUM(ft2)/SUM(Cueros) AS dec(18,2)) AS [Avg], BHTCuero, CAST(SUM(ft2)/SUM(Cueros)-BHTCuero AS dec(18,2)) AS [H Size Var], BHCosto, CAST((CAST(SUM(ft2)/SUM(Cueros)AS dec(18,2))-BHTCuero)*BHCosto*SUM(Cueros) AS dec(18,2)) [H. Size Var $], SUM(netft2) AS Netft2, CAST((SUM(netft2)/SUM(ft2)) * 100 AS dec(18,2)) AS AHU, BHU, CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END AS [Bud Footage], CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2) AS [Footage Var], CAST((CASE WHEN BHU = 0 then 0 Else CAST((SUM(netft2)/BHU) * 100 AS dec(18,2)) END - SUM(Ft2))*BHCosto AS dec(18,2)) [H. utilization $ Var] FROM tblHideUtilizationCalc WHERE  WHERE Planta = '"+Planta+"' AND DescrOem = '"+oem+"' AND DescrConstruccion = '"+cons+"'  AND DescrPrograma = '"+pro+"' AND PT = '"+pts+"'  AND Fecha = '"+YEAR+"-"+MES+"-"+DIAMES+"' GROUP BY Semana, Oem, Construccion, Programa, BHTCuero, BHCosto, BHU) AS p ORDER BY 1");

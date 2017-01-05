@@ -124,8 +124,11 @@ public class Bus2 extends AppCompatActivity
         tvPlanta.setTypeface(TF);  tvAño.setTypeface(TF);  tvMonth.setTypeface(TF);
         tvSemanaDesde.setTypeface(TF); tvSemanaHasta.setTypeface(TF);
 
+        Calendar calendarNow = Calendar.getInstance();
+        int YEAR = calendarNow.get(Calendar.YEAR);
+
         Planta("SELECT distinct Planta FROM tblHideUtilizationCalc");
-        CalcularMesSpinner("SELECT DISTINCT Mes FROM tblHideUtilizationCalc WHERE Año = '2016' ORDER BY 1 DESC");
+        CalcularMesSpinner("SELECT DISTINCT datepart(Month, Fecha) AS Mes FROM tblHideUtilizationJDE WHERE Año = '"+YEAR+"' ORDER BY 1 DESC");
 
     }
 
@@ -158,6 +161,7 @@ public class Bus2 extends AppCompatActivity
 
     }//public
 
+
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items
         //to the action bar if it is present.
@@ -174,7 +178,7 @@ public class Bus2 extends AppCompatActivity
         Var2 = "MTD: " + PorcentajeDeUt2 +" %   $ " + HideUt2 + " USD";
         Var3 = "WTD: " + PorcentajeDeUt3 + " %   $ " + HideUt3 + " USD";
         Var4 = "TODAY: "+ PorcentajeDeUt4 + " %   $ " + HideUt4 + " USD";
-        Var5 = "Month: "+cadena4[sel5]+"\n" +
+        Var5 = "Year: "+cadena3[sel2]+" \nMonth: "+cadena4[sel5]+"\n" +
                 "" + MesPorcentajeDeUtRan + " %   $ " + MesHideUtRan + " USD";
         Var6 = "The week " + cadena2[sel3] + " to " + cadena2[sel4] + "\n" +
                 ""+ SemPorcentajeDeUtRan +" %   $ "+ SemHideUtRan +"";
@@ -236,8 +240,11 @@ public class Bus2 extends AppCompatActivity
             case R.id.spAño:
                 int opc1 = spPlanta.getSelectedItemPosition();
                 int opc2 = spAño.getSelectedItemPosition();
-                Semana("SELECT DISTINCT Semana FROM dbo.tblHideUtilizationJDE WHERE Planta = '"+cadena1[opc1]+"' AND Año = '"+cadena3[opc2]+"' AND Semana <> ( SELECT MAX(Semana) FROM dbo.tblHideUtilizationJDE WHERE Año = '"+cadena3[opc2]+"') ORDER BY 1 DESC");
+
+                CalcularMesSpinner("SELECT DISTINCT datepart(Month, Fecha) AS Mes FROM tblHideUtilizationJDE WHERE Año = '"+cadena3[opc2]+"' ORDER BY 1 DESC");
+                Semana("SELECT DISTINCT Semana FROM tblHideUtilizationJDE WHERE Año = '"+cadena3[opc2]+"' AND Semana NOT IN(SELECT MAX(Semana) FROM tblHideUtilizationJDE) ORDER BY 1 DESC");
                 break;
+
 
 
             default:
@@ -448,10 +455,6 @@ public class Bus2 extends AppCompatActivity
 
 
     }// public void CalcularMesSpinner(String MesSp)
-
-
-
-
 
 
 

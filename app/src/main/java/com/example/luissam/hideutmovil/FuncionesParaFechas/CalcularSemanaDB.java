@@ -1,14 +1,14 @@
 package com.example.luissam.hideutmovil.FuncionesParaFechas;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 /**
- * Created by luissam on 10/13/2016.
+ * Created by luissam on 1/4/2017.
  */
-public class CalcularSemana {
+
+public class CalcularSemanaDB {
 
     private int YEAR;
     private int SEMANA;
@@ -16,114 +16,115 @@ public class CalcularSemana {
     private int DIAMES;
 
 
-    private String Semana1Ini =  "2016-01-03";
-    private String Semana1Fin =  "2016-01-09";
-    private String Semana2Ini =  "2016-01-10";
-    private String Semana2Fin =  "2016-01-16";
-    private String Semana3Ini =  "2016-01-17";
-    private String Semana3Fin =  "2016-01-23";
-    private String Semana4Ini =  "2016-01-24";
-    private String Semana4Fin =  "2016-01-30";
-    private String Semana5Ini =  "2016-01-31";
-    private String Semana5Fin =  "2016-02-06";
-    private String Semana6Ini =  "2016-02-07";
-    private String Semana6Fin =  "2016-02-13";
-    private String Semana7Ini =  "2016-02-14";
-    private String Semana7Fin =  "2016-02-20";
-    private String Semana8Ini =  "2016-02-21";
-    private String Semana8Fin =  "2016-02-27";
-    private String Semana9Ini =  "2016-02-28";
-    private String Semana9Fin =  "2016-03-05";
-    private String Semana10Ini = "2016-03-06";
-    private String Semana10Fin = "2016-03-12";
-    private String Semana11Ini = "2016-03-13";
-    private String Semana11Fin = "2016-03-19";
-    private String Semana12Ini = "2016-03-20";
-    private String Semana12Fin = "2016-03-26";
-    private String Semana13Ini = "2016-03-27";
-    private String Semana13Fin = "2016-04-02";
-    private String Semana14Ini = "2016-04-03";
-    private String Semana14Fin = "2016-04-09";
-    private String Semana15Ini = "2016-04-10";
-    private String Semana15Fin = "2016-04-16";
-    private String Semana16Ini = "2016-04-17";
-    private String Semana16Fin = "2016-04-23";
-    private String Semana17Ini = "2016-04-24";
-    private String Semana17Fin = "2016-04-30";
-    private String Semana18Ini = "2016-05-01";
-    private String Semana18Fin = "2016-05-07";
-    private String Semana19Ini = "2016-05-08";
-    private String Semana19Fin = "2016-05-14";
-    private String Semana20Ini = "2016-05-15";
-    private String Semana20Fin = "2016-05-21";
-    private String Semana21Ini = "2016-05-22";
-    private String Semana21Fin = "2016-05-28";
-    private String Semana22Ini = "2016-05-29";
-    private String Semana22Fin = "2016-06-04";
-    private String Semana23Ini = "2016-06-05";
-    private String Semana23Fin = "2016-06-11";
-    private String Semana24Ini = "2016-06-12";
-    private String Semana24Fin = "2016-06-18";
-    private String Semana25Ini = "2016-06-19";
-    private String Semana25Fin = "2016-06-25";
-    private String Semana26Ini = "2016-06-26";
-    private String Semana26Fin = "2016-07-02";
-    private String Semana27Ini = "2016-07-03";
-    private String Semana27Fin = "2016-07-09";
-    private String Semana28Ini = "2016-07-10";
-    private String Semana28Fin = "2016-07-16";
-    private String Semana29Ini = "2016-07-17";
-    private String Semana29Fin = "2016-07-23";
-    private String Semana30Ini = "2016-07-24";
-    private String Semana30Fin = "2016-07-30";
-    private String Semana31Ini = "2016-07-31";
-    private String Semana31Fin = "2016-08-06";
-    private String Semana32Ini = "2016-08-07";
-    private String Semana32Fin = "2016-08-13";
-    private String Semana33Ini = "2016-08-14";
-    private String Semana33Fin = "2016-08-20";
-    private String Semana34Iin = "2016-08-21";
-    private String Semana34Fin = "2016-08-27";
-    private String Semana35Ini = "2016-08-28";
-    private String Semana35Fin = "2016-09-03";
-    private String Semana36Ini = "2016-09-04";
-    private String Semana36Fin = "2016-09-10";
-    private String Semana37Ini = "2016-09-11";
-    private String Semana37Fin = "2016-09-17";
-    private String Semana38Ini = "2016-09-18";
-    private String Semana38Fin = "2016-09-24";
-    private String Semana39Ini = "2016-09-25";
-    private String Semana39Fin = "2016-10-01";
-    private String Semana40Ini = "2016-10-02";
-    private String Semana40Fin = "2016-10-08";
-    private String Semana41Ini = "2016-10-09";
-    private String Semana41Fin = "2016-10-15";
-    private String Semana42Iin = "2016-10-16";
-    private String Semana42Fin = "2016-10-22";
-    private String Semana43Ini = "2016-10-23";
-    private String Semana43Fin = "2016-10-29";
-    private String Semana44Ini = "2016-10-30";
-    private String Semana44Fin = "2016-11-05";
-    private String Semana45Ini = "2016-11-06";
-    private String Semana45Fin = "2016-11-12";
-    private String Semana46Ini = "2016-11-13";
-    private String Semana46Fin = "2016-11-19";
-    private String Semana47Ini = "2016-11-20";
-    private String Semana47Fin = "2016-11-26";
-    private String Semana48Ini = "2016-11-27";
-    private String Semana48Fin = "2016-12-03";
-    private String Semana49Ini = "2016-12-04";
-    private String Semana49Fin = "2016-12-10";
-    private String Semana50Iin = "2016-12-11";
-    private String Semana50Fin = "2016-12-17";
-    private String Semana51Ini = "2016-12-18";
-    private String Semana51Fin = "2016-12-24";
-    private String Semana52Ini = "2016-12-25";
-    private String Semana52Fin = "2016-12-31";
+    private String Semana1Ini =  "2017-01-01";
+    private String Semana2Ini =  "2017-01-08";
+    private String Semana3Ini =  "2017-01-15";
+    private String Semana4Ini =  "2017-01-22";
+    private String Semana5Ini =  "2017-01-29";
+    private String Semana6Ini =  "2017-02-05";
+    private String Semana7Ini =  "2017-02-12";
+    private String Semana8Ini =  "2017-02-19";
+    private String Semana9Ini =  "2017-02-26";
+    private String Semana10Ini = "2017-03-05";
+    private String Semana11Ini = "2017-03-12";
+    private String Semana12Ini = "2017-03-19";
+    private String Semana13Ini = "2017-03-26";
+    private String Semana14Ini = "2017-04-02";
+    private String Semana15Ini = "2017-04-09";
+    private String Semana16Ini = "2017-04-16";
+    private String Semana17Ini = "2017-04-23";
+    private String Semana18Ini = "2017-04-30";
+    private String Semana19Ini = "2017-05-07";
+    private String Semana20Ini = "2017-05-14";
+    private String Semana21Ini = "2017-05-21";
+    private String Semana22Ini = "2017-05-28";
+    private String Semana23Ini = "2017-06-04";
+    private String Semana24Ini = "2017-06-11";
+    private String Semana25Ini = "2017-06-18";
+    private String Semana26Ini = "2017-06-25";
+    private String Semana27Ini = "2017-07-02";
+    private String Semana28Ini = "2017-07-09";
+    private String Semana29Ini = "2017-07-16";
+    private String Semana30Ini = "2017-07-23";
+    private String Semana31Ini = "2017-07-30";
+    private String Semana32Ini = "2017-08-06";
+    private String Semana33Ini = "2017-08-13";
+    private String Semana34Iin = "2017-08-20";
+    private String Semana35Ini = "2017-08-27";
+    private String Semana36Ini = "2017-09-03";
+    private String Semana37Ini = "2017-09-10";
+    private String Semana38Ini = "2017-09-17";
+    private String Semana39Ini = "2017-09-24";
+    private String Semana40Ini = "2017-10-01";
+    private String Semana41Ini = "2017-10-08";
+    private String Semana42Iin = "2017-10-15";
+    private String Semana43Ini = "2017-10-22";
+    private String Semana44Ini = "2017-10-29";
+    private String Semana45Ini = "2017-11-05";
+    private String Semana46Ini = "2017-11-12";
+    private String Semana47Ini = "2017-11-19";
+    private String Semana48Ini = "2017-11-26";
+    private String Semana49Ini = "2017-12-03";
+    private String Semana50Iin = "2017-12-10";
+    private String Semana51Ini = "2017-12-17";
+    private String Semana52Ini = "2017-12-24";
+
+    private String Semana1Fin =  "2017-01-07";
+    private String Semana2Fin =  "2017-01-14";
+    private String Semana3Fin =  "2017-01-21";
+    private String Semana4Fin =  "2017-01-28";
+    private String Semana5Fin =  "2017-02-04";
+    private String Semana6Fin =  "2017-02-11";
+    private String Semana7Fin =  "2017-02-18";
+    private String Semana8Fin =  "2017-02-25";
+    private String Semana9Fin =  "2017-03-04";
+    private String Semana10Fin = "2017-03-11";
+    private String Semana11Fin = "2017-03-18";
+    private String Semana12Fin = "2017-03-25";
+    private String Semana13Fin = "2017-04-01";
+    private String Semana14Fin = "2017-04-08";
+    private String Semana15Fin = "2017-04-15";
+    private String Semana16Fin = "2017-04-22";
+    private String Semana17Fin = "2017-04-29";
+    private String Semana18Fin = "2017-05-06";
+    private String Semana19Fin = "2017-05-13";
+    private String Semana20Fin = "2017-05-20";
+    private String Semana21Fin = "2017-05-27";
+    private String Semana22Fin = "2017-06-03";
+    private String Semana23Fin = "2017-06-10";
+    private String Semana24Fin = "2017-06-17";
+    private String Semana25Fin = "2017-06-24";
+    private String Semana26Fin = "2017-07-01";
+    private String Semana27Fin = "2017-07-08";
+    private String Semana28Fin = "2017-07-15";
+    private String Semana29Fin = "2017-07-22";
+    private String Semana30Fin = "2017-07-29";
+    private String Semana31Fin = "2017-08-05";
+    private String Semana32Fin = "2017-08-12";
+    private String Semana33Fin = "2017-08-19";
+    private String Semana34Fin = "2017-08-26";
+    private String Semana35Fin = "2017-09-02";
+    private String Semana36Fin = "2017-09-09";
+    private String Semana37Fin = "2017-09-16";
+    private String Semana38Fin = "2017-09-23";
+    private String Semana39Fin = "2017-09-30";
+    private String Semana40Fin = "2017-10-07";
+    private String Semana41Fin = "2017-10-14";
+    private String Semana42Fin = "2017-10-21";
+    private String Semana43Fin = "2017-10-28";
+    private String Semana44Fin = "2017-11-04";
+    private String Semana45Fin = "2017-11-11";
+    private String Semana46Fin = "2017-11-18";
+    private String Semana47Fin = "2017-11-25";
+    private String Semana48Fin = "2017-12-02";
+    private String Semana49Fin = "2017-12-09";
+    private String Semana50Fin = "2017-12-16";
+    private String Semana51Fin = "2017-12-23";
+    private String Semana52Fin = "2017-12-30";
 
 
 
-    public CalcularSemana() {
+    public CalcularSemanaDB() {
         Calendar calendarNow = Calendar.getInstance();
         YEAR = calendarNow.get(Calendar.YEAR);
         SEMANA = calendarNow.get(Calendar.WEEK_OF_YEAR) - 1;
@@ -546,6 +547,9 @@ public class CalcularSemana {
     public String getSemana52Ini() {
         return Semana52Ini;
     }
+
+
+
 
 
 }

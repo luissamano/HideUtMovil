@@ -37,6 +37,7 @@ import java.text.DecimalFormat;
 import java.text.Format;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -178,10 +179,13 @@ public class Bus3 extends AppCompatActivity
         btnRegresar2.setOnClickListener(this);
 
 
+        Calendar calendarNow = Calendar.getInstance();
+        int YEAR = calendarNow.get(Calendar.YEAR);
+
 
         PrimerSppiner("SELECT DISTINCT Planta FROM tblHideUtilizationCalc");
-        Year("SELECT DISTINCT Año FROM tblHideUtilizationCalc Order by 1 desc");
-        CalcularMesSpinner("SELECT DISTINCT Mes FROM tblHideUtilizationCalc WHERE Año = '2016' ORDER BY 1 DESC");
+        Year("SELECT DISTINCT Año FROM tblHideUtilizationJDE Order by 1 desc");
+        CalcularMesSpinner("SELECT DISTINCT datepart(Month, Fecha) AS Mes FROM tblHideUtilizationCalc WHERE Año = '"+YEAR+"' ORDER BY 1 DESC");
 
     }
 
@@ -718,7 +722,9 @@ public class Bus3 extends AppCompatActivity
 
                 int opc1 = spPlanta1.getSelectedItemPosition();
                 int opc2 = spYear.getSelectedItemPosition();
-                Semana("SELECT DISTINCT Semana FROM dbo.tblHideUtilizationJDE WHERE Planta = '"+planta[opc1]+"' AND Año = '"+year[opc2]+"' AND Semana <> ( SELECT MAX(Semana) FROM dbo.tblHideUtilizationJDE WHERE Año = '"+year[opc2]+"' ) ORDER BY 1 DESC");
+
+                CalcularMesSpinner("SELECT DISTINCT datepart(Month, Fecha) AS Mes FROM tblHideUtilizationJDE WHERE Año = '"+year[opc2]+"' ORDER BY 1 DESC");
+                Semana("SELECT DISTINCT Semana FROM tblHideUtilizationJDE WHERE Año = '"+year[opc2]+"' AND Semana NOT IN(SELECT MAX(Semana) FROM tblHideUtilizationJDE) ORDER BY 1 DESC");
                 break;
 
             default:
@@ -1234,7 +1240,7 @@ public class Bus3 extends AppCompatActivity
         Var2 = "MTD: " + PorcentajeDeUt2 +" %   $ " + Num2 + " USD";
         Var3 = "WTD: " + PorcentajeDeUt3 + " %   $ " + Num3 + " USD";
         Var4 = "TODAY: "+ PorcentajeDeUt4 + " %   $ " + Num4 + " USD";
-        Var5 = "Month: "+MesSl[sel9]+"\n" +
+        Var5 = "Year: "+year[sel5]+" \nMonth: "+MesSl[sel9]+"\n" +
                 "" + MesPorcentajeDeUtRan + " %   $ " + Num6 + " USD";
         Var6 = "The week " + semDe + " to " + semHa + "\n" +
                 ""+ SemPorcentajeDeUtRan +" %   $ "+ Num5 +"";
